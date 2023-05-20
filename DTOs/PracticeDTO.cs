@@ -9,10 +9,16 @@ namespace prog3finalV4.DTOs
         public string? practice_name { get; set; }
         public DateTime date { get; set; }
         public double overall_length { get; set; }        
-        public movmentDataDTO movmentData { get; set; }
-        public audioDataDTO audioData { get; set; }
+        public List<movmentDataDTO> movmentData { get; set; }
+        public List<audioDataDTO> audioData { get; set; }
 
         public int userId { get; set; }
+
+        public PracticeDTO()
+        {
+            movmentData = new List<movmentDataDTO>();
+            audioData = new List<audioDataDTO>();
+        }
 
     }
 }
