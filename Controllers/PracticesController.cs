@@ -67,6 +67,40 @@ namespace prog3finalV4.Controllers
             }
         }
 
+        //שליפה של שם משתמש
+        [HttpGet("GetUserName")]
+        public async Task<IActionResult> GetUserName()
+        {
+            //שורה שבודקת אם הסשן חי
+            int? sessionId = HttpContext.Session.GetInt32("userId");
+            //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
+            if (sessionId != null)
+            {
+                //שליפת המשתמש
+                string userquery = "SELECT * FROM user where Id=@sessionId";
+                var usersRecords = await _db.GetRecordsAsync<UserDTO>(userquery, new { sessionId });
+                if(usersRecords != null)
+                {
+                    foreach (UserDTO u in usersRecords)
+                    {
+                        string userName = u.FirstName;
+                        return Ok(userName);
+                    }
+                    return BadRequest("no user fond");
+
+                }
+                else
+                {
+                    return BadRequest("no user fond");
+                }
+;
+            }
+            else
+            {
+                return BadRequest("no open session");
+            }
+        }
+
         //עדכון שם אימון
         [HttpPost("UpdatePracticeName")]
         public async Task<IActionResult> UpdatePracticeName(PracticeDTO PracticeToUpdate)

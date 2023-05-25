@@ -109,7 +109,7 @@ namespace TriangleProject.Server.Controllers
             if (userId == 0)
             {
                 //להתאים לטבלה שלנו
-                string insertQuery = "INSERT INTO Users (FirstName, LastName, PortelemId) VALUES (@FirstName, @LastName, @PortelemId)";
+                string insertQuery = "INSERT INTO User (FirstName, LastName, PortelemId) VALUES (@FirstName, @LastName, @PortelemId)";
                 userId = await _db.InsertReturnId(insertQuery, user);
                 if (userId == 0)
                     return 0;
