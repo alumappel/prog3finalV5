@@ -24,6 +24,8 @@ namespace prog3finalV4.Controllers
         {
             //שורה שבודקת אם הסשן חי
             int? sessionId = HttpContext.Session.GetInt32("userId");
+
+
             //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
             if (sessionId != null)
             {
@@ -71,6 +73,9 @@ namespace prog3finalV4.Controllers
         [HttpGet("GetUserName")]
         public async Task<IActionResult> GetUserName()
         {
+            int? findFromSession = HttpContext.Session.GetInt32("userId");
+            Console.WriteLine("find2: " + findFromSession.ToString());
+
             //שורה שבודקת אם הסשן חי
             int? sessionId = HttpContext.Session.GetInt32("userId");
             //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים

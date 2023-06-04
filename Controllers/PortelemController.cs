@@ -55,6 +55,11 @@ namespace TriangleProject.Server.Controllers
                 int devUserId = await loginFunc(devUser);
                 if (devUserId == 0)
                     return BadRequest("insert fail");
+                HttpContext.Session.SetInt32("userId", devUserId);
+                Console.WriteLine("insert " + devUserId.ToString() );
+                int ? findFromSession =  HttpContext.Session.GetInt32("userId");
+                Console.WriteLine("find " + findFromSession.ToString());
+
                 return Ok(devUserId);
             }
 
@@ -92,6 +97,9 @@ namespace TriangleProject.Server.Controllers
             int userId = await loginFunc(studentUser);
             if (userId == 0)
                 return BadRequest("insert fail");
+
+            HttpContext.Session.SetInt32("userId", userId);
+            Console.WriteLine(userId);
             return Ok(userId);
             //}
         }
