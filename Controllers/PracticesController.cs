@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Mysqlx.Crud;
 using prog3finalV4.DTOs;
@@ -71,6 +72,7 @@ namespace prog3finalV4.Controllers
 
         //שליפה של שם משתמש
         [HttpGet("GetUserName")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetUserName()
         {
             int? findFromSession = HttpContext.Session.GetInt32("userId");

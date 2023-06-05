@@ -56,10 +56,7 @@ namespace TriangleProject.Server.Controllers
                 if (devUserId == 0)
                     return BadRequest("insert fail");
                 HttpContext.Session.SetInt32("userId", devUserId);
-                Console.WriteLine("insert " + devUserId.ToString() );
                 int ? findFromSession =  HttpContext.Session.GetInt32("userId");
-                Console.WriteLine("find " + findFromSession.ToString());
-
                 return Ok(devUserId);
             }
 
@@ -99,10 +96,17 @@ namespace TriangleProject.Server.Controllers
                 return BadRequest("insert fail");
 
             HttpContext.Session.SetInt32("userId", userId);
-            Console.WriteLine(userId);
             return Ok(userId);
             //}
         }
+
+        [HttpGet("test")]
+        public async Task<IActionResult> GetSession()
+        {
+            int? x = HttpContext.Session.GetInt32("userId");
+            return Ok(x);
+        }
+
         private async Task<int> loginFunc(UserFromPortelem user)
         {
             object getParam = new
