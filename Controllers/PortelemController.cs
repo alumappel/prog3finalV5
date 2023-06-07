@@ -100,12 +100,12 @@ namespace TriangleProject.Server.Controllers
             //}
         }
 
-        [HttpGet("test")]
-        public async Task<IActionResult> GetSession()
-        {
-            int? x = HttpContext.Session.GetInt32("userId");
-            return Ok(x);
-        }
+        //[HttpGet("test")]
+        //public async Task<IActionResult> GetSession()
+        //{
+        //    int? x = HttpContext.Session.GetInt32("userId");
+        //    return Ok(x);
+        //}
 
         private async Task<int> loginFunc(UserFromPortelem user)
         {

@@ -21,48 +21,65 @@ namespace prog3finalV4.Controllers
 
         //שליפת כל התכנים לפי תרגולים
         [HttpGet("GetAllPracticesById")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<PracticeDTO>>> GetAllPracticesById()
         {
             //שורה שבודקת אם הסשן חי
+            int? findFromSession = HttpContext.Session.GetInt32("userId");
+            Console.WriteLine("findall: " + findFromSession.ToString());
+
             int? sessionId = HttpContext.Session.GetInt32("userId");
-
-
             //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
             if (sessionId != null)
             {
                 //שליפת אימונים
                 string practicequery = "SELECT * from practices WHERE userId=@sessionId";
                 var practicesRecords = await _db.GetRecordsAsync<PracticeDTO>(practicequery, new { sessionId });
-                //שליפת תנועה
-                string movmentquery = "SELECT * from movment_data";
-                var moveRecords = await _db.GetRecordsAsync<movmentDataDTO>(movmentquery, new object { });
-                //שליפת אודיו'
-                string audioquery = "SELECT * FROM audio_data;";
-                var audioRecords = await _db.GetRecordsAsync<audioDataDTO>(audioquery, new object { });
-
-
-                //קישור בין כל תת טבלה לטבלת האימונים
-                foreach (PracticeDTO p in practicesRecords)
+                if (practicesRecords != null)
                 {
-                    foreach (movmentDataDTO m in moveRecords)
+                    //שליפת תנועה
+                    string movmentquery = "SELECT * from movment_data";
+                    var moveRecords = await _db.GetRecordsAsync<movmentDataDTO>(movmentquery, new object { });
+                    if (moveRecords != null)
                     {
-                        if (m.practiceId == p.Id)
+                        //קישור בין כל תת טבלה לטבלת האימונים
+                        foreach (PracticeDTO p in practicesRecords)
                         {
-                            p.movmentData.Add(m);
+                            foreach (movmentDataDTO m in moveRecords)
+                            {
+                                if (m.practiceId == p.Id)
+                                {
+                                    p.movmentData.Add(m);
+                                }
+                            }
                         }
-                    }
-                    foreach (audioDataDTO a in audioRecords)
-                    {
-                        if (a.practiceId == p.Id)
-                        {
-                            p.audioData.Add(a);
-                        }
-                    }
-                }
 
-                //המרה לרשימה והחזרה
-                List<PracticeDTO> preacticesList = practicesRecords.ToList();
-                return Ok(preacticesList);
+                    }
+
+                    //שליפת אודיו'
+                    string audioquery = "SELECT * FROM audio_data;";
+                    var audioRecords = await _db.GetRecordsAsync<audioDataDTO>(audioquery, new object { });
+                    if (audioRecords != null)
+                    {
+
+                        //קישור בין כל תת טבלה לטבלת האימונים
+                        foreach (PracticeDTO p in practicesRecords)
+                        {
+                            foreach (audioDataDTO a in audioRecords)
+                            {
+                                if (a.practiceId == p.Id)
+                                {
+                                    p.audioData.Add(a);
+                                }
+                            }
+                        }
+                    }
+
+                    //המרה לרשימה והחזרה
+                    List<PracticeDTO> preacticesList = practicesRecords.ToList();                   
+                    return Ok(preacticesList);
+                }
+                return BadRequest("no practices");
             }
             else
             {
@@ -76,7 +93,7 @@ namespace prog3finalV4.Controllers
         public async Task<IActionResult> GetUserName()
         {
             int? findFromSession = HttpContext.Session.GetInt32("userId");
-            Console.WriteLine("find2: " + findFromSession.ToString());
+            Console.WriteLine("findname: " + findFromSession.ToString());
 
             //שורה שבודקת אם הסשן חי
             int? sessionId = HttpContext.Session.GetInt32("userId");
@@ -86,7 +103,7 @@ namespace prog3finalV4.Controllers
                 //שליפת המשתמש
                 string userquery = "SELECT * FROM user where Id=@sessionId";
                 var usersRecords = await _db.GetRecordsAsync<UserDTO>(userquery, new { sessionId });
-                if(usersRecords != null)
+                if (usersRecords != null)
                 {
                     foreach (UserDTO u in usersRecords)
                     {

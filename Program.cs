@@ -22,6 +22,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseSession();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+
 app.UseHttpsRedirection();
 
 app.UseCors(X => X.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
