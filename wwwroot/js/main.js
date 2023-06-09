@@ -27,9 +27,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // הוספת מאזין לכפתור הזתחלת ניתוח
   document.getElementById("startBtn").addEventListener("click", startAnalysis);
+  // הוספת מאזין לעצירת שעון
+  document.getElementById("stopBtn").addEventListener("click", stopTimer);
 
 
-  // });
+  
 
 
 })
@@ -209,13 +211,14 @@ function startAnalysis() {
   }
 }
 
+var timer; // Declare the timer variable outside the startTimer function
 
 function startTimer() {
   // Get the current time in milliseconds
   var startTime = new Date().getTime();
 
   // Set up a timer that fires every second
-  var timer = setInterval(function () {
+  timer = setInterval(function () {
     // Get the current time in milliseconds
     var currentTime = new Date().getTime();
 
@@ -234,3 +237,6 @@ function startTimer() {
   }, 1000);
 }
 
+function stopTimer(){  
+  clearInterval(timer); // Stop the timer
+}
