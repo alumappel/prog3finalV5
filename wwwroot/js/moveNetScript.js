@@ -1,3 +1,4 @@
+// לעצירה ובדיקות
 let runDetector = true;
 let runFrame = true;
 let runHands = true;
@@ -33,6 +34,7 @@ async function initSkeleton(videoHeight, videoWidth) {
 
   // פונקצייה שחוזרת כל פריים ומבצעת ניתוח על הוידיאו יחד עם הצגה של שלד
   async function redraw() {
+    if (runDetector==true){
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // ספירת הפריים
@@ -87,6 +89,7 @@ async function initSkeleton(videoHeight, videoWidth) {
     } catch (e) {
       console.error('Failed to estimate poses:', e);
     }
+  }
   }
 
   // קריאה ראשונה לפונקצייה שחוזקת

@@ -1,7 +1,6 @@
 // Importing libraries
 import { PitchDetector } from "https://esm.sh/pitchy@4";
 
-
 export var audioAnalysisStart=false;
 export const audioArry = [];
 
@@ -10,11 +9,13 @@ export const audioArry = [];
 //   //  document.getElementById("startBtnAudio").addEventListener("click", analyzeAudioFromMicrophone);
 // })
 
+let audioContext;
+let scriptNode;
 
 export function analyzeAudioFromMicrophone() {
    
     // Set up audio context and media stream
-    const audioContext = new AudioContext();
+    audioContext = new AudioContext();
     // Create an AnalyserNode instance to analyze the audio signal
     const analyserNode = audioContext.createAnalyser();
 
@@ -24,7 +25,7 @@ export function analyzeAudioFromMicrophone() {
             const source = audioContext.createMediaStreamSource(stream);
 
             // Set up script processor node to receive audio data
-            const scriptNode = audioContext.createScriptProcessor(4096, 1, 1);
+            scriptNode = audioContext.createScriptProcessor(4096, 1, 1);
             source.connect(scriptNode);
             scriptNode.connect(audioContext.destination);
 
@@ -104,7 +105,14 @@ export function analyzeAudioFromMicrophone() {
 
 
 
-
+export function stopAudioAnalysis() {
+    audioAnalysisStart = false; // Set analysis start flag to false
+    if (audioContext && scriptNode) {
+      scriptNode.onaudioprocess = null; // Remove the onaudioprocess event listener
+      scriptNode.disconnect(); // Disconnect the script node
+      audioContext.close(); // Close the audio context
+    }
+  }
 
 
 //show dataArry live

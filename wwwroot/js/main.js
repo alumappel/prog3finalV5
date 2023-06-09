@@ -1,6 +1,9 @@
 ﻿import { analyzeAudioFromMicrophone } from "./audioScript.js";
 import { initMonotony } from "./myMonotonyScript.js";
 import { audioArry } from "./audioScript.js";
+import { stopAudioAnalysis } from "./audioScript.js";
+import { addPractice1 } from "./APIHAndlerForAdd.js";
+
 
 
 // משתנים לגודל הוידיאו מהמצלמה
@@ -28,10 +31,12 @@ window.addEventListener("DOMContentLoaded", function () {
   // הוספת מאזין לכפתור הזתחלת ניתוח
   document.getElementById("startBtn").addEventListener("click", startAnalysis);
   // הוספת מאזין לעצירת שעון
-  document.getElementById("stopBtn").addEventListener("click", stopTimer);
+    document.getElementById("stopBtn").addEventListener("click", stopAll);
+  //מאזין לשמירה
+    document.getElementById("saveToDb").addEventListener("click", addPractice1);
 
 
-  
+
 
 
 })
@@ -189,7 +194,7 @@ function startAnalysis() {
           audioArry.length = 0;
           // console.log("cleard");
           // מנקה משובים
-          const HTMlItems = ["pitchDiv","volDiv","overlayBorderColor","rightHandDiv","leftHandDiv","handsDiv","eyesDiv"];
+          const HTMlItems = ["pitchDiv", "volDiv", "overlayBorderColor", "rightHandDiv", "leftHandDiv", "handsDiv", "eyesDiv"];
           HTMlItems.forEach(item => {
             if (document.getElementById(item).classList.contains("redG")) {
               document.getElementById(item).classList.remove("redG");
@@ -237,6 +242,45 @@ function startTimer() {
   }, 1000);
 }
 
-function stopTimer(){  
-  clearInterval(timer); // Stop the timer
+function stopAll() {
+
+
+    // עוצר הכל
+    clearInterval(timer); // Stop the timer
+    runDetector = false;// תנועה
+    // isListening=false;// מונוטוניות
+    // clearInterval(listenIntervalId);// מונוטוניות
+    // אודיו
+    stopAudioAnalysis();
+
+    // מנקה משובים
+    const HTMlItems = ["pitchDiv", "volDiv", "overlayBorderColor", "rightHandDiv", "leftHandDiv", "handsDiv", "eyesDiv"];
+    HTMlItems.forEach(item => {
+      if (document.getElementById(item).classList.contains("redG")) {
+        document.getElementById(item).classList.remove("redG");
+      }
+      if (document.getElementById(item).classList.contains("greenG")) {
+        document.getElementById(item).classList.remove("greenG");
+      }
+    });
+    document.getElementById("rightHandFeedback").innerHTML = "";
+    document.getElementById("leftHandFeedback").innerHTML = "";
+  
+    // בדיקה שאכן משהו הספיק להימדד
+    if (MoveArry.length > 2 || audioArry.length > 2) {
+          // מודאל שמירה    
+   var Modal1 = new bootstrap.Modal(document.getElementById("saveModal"), {
+    backdrop: 'static',
+    keyboard: false
+  });
+  Modal1.show();
+}
+  // אם שום דבר לא נמדד
+  else {    
+   var Modal2 = new bootstrap.Modal(document.getElementById("errorModal"), {
+      backdrop: 'static',
+      keyboard: false
+    });
+    Modal2.show();
+  }
 }
