@@ -111,3 +111,4 @@ C:\Users\user\Documents\prog3finalV5\obj\Debug\net6.0\prog3finalV4.pdb
 C:\Users\user\Documents\prog3finalV5\obj\Debug\net6.0\prog3finalV4.genruntimeconfig.cache
 C:\Users\user\Documents\prog3finalV5\obj\Debug\net6.0\ref\prog3finalV4.dll
 C:\Users\Aluma\Documents\prog3finalAPI\prog3finalV4\bin\Debug\net6.0\prog3finalV4.staticwebassets.runtime.json
+C:\Users\user\Documents\prog3finalV5\bin\Debug\net6.0\prog3finalV4.staticwebassets.runtime.json
