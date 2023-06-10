@@ -1,5 +1,5 @@
 import { audioArry } from "./audioScript.js";
-
+/*import * as bootstrap from "./bootstrap.bundle.js";*/
 
 // שמירת כתובת השרת
 const serverUrl = `./api/`
@@ -87,17 +87,25 @@ const serverUrl = `./api/`
      // במידה והקריאה הצליחה
      if (response.ok) {
          //הודעה אישור
-         const toastLiveExample = document.getElementById('editToast');
-         const toast = new bootstrap.Toast(toastLiveExample);
-         toast.show();
+         //const toastLiveExample = document.getElementById('editToast');
+         //const toast = new bootstrap.Toast(toastLiveExample);
+         //toast.show();
+         window.location.href = "SummaryFeedback.html";
      } else {
          // נציג את השגיאות במידה והערך לא תקין
          const errors = await response.text();
          console.log(errors);
-         const toastLiveExample = document.getElementById('errorToast');
-         const toast = new bootstrap.Toast(toastLiveExample);
-         toast.show();
+         //const toastLiveExample = document.getElementById('errorToast');
+         //const toast = new bootstrap.Toast(toastLiveExample);
+         //toast.show();
+         alert("אנחנו מתנצלות אך לצערנו לא הצלחנו לשמור את האימון, בבקשה נסו שוב במועד אחר.")
     }
 
 
 }
+
+//window.addEventListener("DOMContentLoaded", function () {
+//    const toastLiveExample = document.getElementById('editToast');
+//    const toast = new bootstrap.Toast(toastLiveExample);
+//    toast.show();
+//})

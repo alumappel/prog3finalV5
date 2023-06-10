@@ -411,7 +411,7 @@ function creatMoveArry() {
     if (currentTime - startTime > 10000) {
       startTime = new Date().getTime();
       const HandsNames = ["ok", "hided", "static"];
-      const togglNames = ["ok", "wrong"];
+      const togglNames = [true, false];
       const rightHandCount = [rightHandOkCount, rightHandHidedCount, rightHandstaticCount]      
       const leftHandCount = [leftHandOkCount,leftHandHidedCount, leftHandstaticCount ]
       const eyesCount=[eyesOkcount,eyesWrongCount];
