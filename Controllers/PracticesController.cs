@@ -5,6 +5,8 @@ using Mysqlx.Crud;
 using prog3finalV4.DTOs;
 using TriangleDbRepository;
 
+
+
 namespace prog3finalV4.Controllers
 {
     [Route("api/Practices")]
@@ -76,7 +78,7 @@ namespace prog3finalV4.Controllers
                     }
 
                     //המרה לרשימה והחזרה
-                    List<PracticeDTO> preacticesList = practicesRecords.ToList();                   
+                    List<PracticeDTO> preacticesList = practicesRecords.ToList();
                     return Ok(preacticesList);
                 }
                 return BadRequest("no practices");
@@ -125,41 +127,41 @@ namespace prog3finalV4.Controllers
             }
         }
 
-        //עדכון שם אימון
-        [HttpPost("UpdatePracticeName")]
-        public async Task<IActionResult> UpdatePracticeName(PracticeDTO PracticeToUpdate)
-        {
-            //שורה שבודקת אם הסשן חי
-            int? sessionId = HttpContext.Session.GetInt32("userId");
-            //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
-            if (sessionId != null)
-            {
+        ////עדכון שם אימון
+        //[HttpPost("UpdatePracticeName")]
+        //public async Task<IActionResult> UpdatePracticeName(PracticeDTO PracticeToUpdate)
+        //{
+        //    //שורה שבודקת אם הסשן חי
+        //    int? sessionId = HttpContext.Session.GetInt32("userId");
+        //    //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
+        //    if (sessionId != null)
+        //    {
 
-                if (PracticeToUpdate.Id > 0)
-                {
-                    string query = "UPDATE practices SET practice_name = @practice_name WHERE id =@Id";
+        //        if (PracticeToUpdate.Id > 0)
+        //        {
+        //            string query = "UPDATE practices SET practice_name = @practice_name WHERE id =@Id";
 
-                    bool isQuestionUpdated = await _db.SaveDataAsync(query, PracticeToUpdate);
+        //            bool isQuestionUpdated = await _db.SaveDataAsync(query, PracticeToUpdate);
 
-                    if (isQuestionUpdated == true)
-                    {
-                        return Ok();
-                    }
-                    else
-                    {
-                        return BadRequest("Question Update Failed");
-                    }
-                }
-                else
-                {
-                    return BadRequest("ID not sent");
-                }
-            }
-            else
-            {
-                return BadRequest("no open session");
-            }
-        }
+        //            if (isQuestionUpdated == true)
+        //            {
+        //                return Ok();
+        //            }
+        //            else
+        //            {
+        //                return BadRequest("Question Update Failed");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return BadRequest("ID not sent");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("no open session");
+        //    }
+        //}
 
         //מחיקת אימון
         [HttpDelete("PracticeIdToDelete")]
@@ -200,111 +202,6 @@ namespace prog3finalV4.Controllers
 
 
 
-        ////שמירת אימון חדש
-        //[HttpPost("InsertPractice")]
-        ////הפונקציה מקבלת כפרמטר את השאלה
-        //public async Task<IActionResult> InsertPractice(PracticeDTO practice)
-        //{
-        //    //שורה שבודקת אם הסשן חי
-        //    int? sessionId = HttpContext.Session.GetInt32("userId");
-        //    //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
-        //    if (sessionId != null)
-        //    {
-        //        practice.userId = (int)sessionId;
-        //        //כתיבת שאילתת ההוספה עם כל שדות השאלה פרט למזהה שמתווסף אוטומטית
-        //        string query = "INSERT INTO practices (practice_name, date, overall_length,userId) VALUES (@practice_name, @date, @overall_length,@userId);";
-        //        //קריאה לקובץ DbRepository, שליחת השאילתה והשאלה והחזרת המזהה של השאלה החדשה שנוצרה
-        //        int newpracticeId = await _db.InsertReturnId(query, practice);
-        //        //במידה והמזהה גדול מ-0, כלומר, ההוספה הצליחה
-        //        if (newpracticeId > 0)
-        //        {
-
-        //            //בדיקה שנעשתה מדידה
-        //            //עדכון ID בכל אחת מהתת טבלאות 
-        //            //שמירה בטבלה המתאימה
-        //            //בדיקת שגיאה
-        //            if (practice.movmentData.Count > 0)
-        //            {
-        //                // Prepare the bulk insert query
-        //                string Mquery = "INSERT INTO movment_data (frameStateOK,eyesStateOK,rightHandState,leftHandState,practiceId) VALUES ";
-
-        //                // Prepare the parameter values list
-        //                List<object> parameterValues = new List<object>();
-
-        //                // Generate the parameter placeholders and collect the parameter values
-        //                string parameterPlaceholders = string.Join(",", Enumerable.Range(0, practice.movmentData.Count)
-        //                    .Select(index =>
-        //                    {
-        //                        movmentDataDTO m = practice.movmentData[index];
-        //                        m.practiceId = newpracticeId;
-        //                        parameterValues.AddRange(new object[]
-        //                        {
-        //        m.frameStateOK,
-        //    m.eyesStateOK,
-        //    m.rightHandState,
-        //    m.leftHandState,
-        //    m.practiceId
-        //                        });
-        //                        return $"(@frameStateOK{index}, @eyesStateOK{index}, @rightHandState{index}, @leftHandState{index}, @practiceId{index})";
-        //                    }));
-
-        //                // Combine the query and parameter placeholders
-        //                Mquery += parameterPlaceholders;
-
-        //                // Perform the bulk insert
-        //                bool isSaved = await _db.SaveDataAsync(Mquery, parameterValues.ToArray());
-        //                if (!isSaved)
-        //                {
-        //                    return BadRequest("Save location failed");
-        //                }
-        //            }
-        //            if (practice.audioData.Count > 0)
-        //            {
-        //                // Prepare the bulk insert query
-        //                string Aquery = "INSERT INTO audio_data (averageVolumeForMeter,pichMax,pichMin,practiceId) VALUES ";
-
-        //                // Prepare the parameter values list
-        //                List<object> AparameterValues = new List<object>();
-
-        //                // Generate the parameter placeholders and collect the parameter values
-        //                string AparameterPlaceholders = string.Join(",", Enumerable.Range(0, practice.audioData.Count)
-        //                    .Select(index =>
-        //                    {
-        //                        audioDataDTO a = practice.audioData[index];
-        //                        a.practiceId = newpracticeId;
-        //                        AparameterValues.AddRange(new object[]
-        //                        {
-        //        a.averageVolumeForMeter,
-        //    a.pichMax,
-        //    a.pichMin,
-        //    a.practiceId
-        //                        });
-        //                        return $"(@averageVolumeForMeter{index}, @pichMax{index}, @pichMin{index}, @practiceId{index})";
-        //                    }));
-
-        //                // Combine the query and parameter placeholders
-        //                Aquery += AparameterPlaceholders;
-
-        //                // Perform the bulk insert
-        //                bool isSaved = await _db.SaveDataAsync(Aquery, AparameterValues.ToArray());
-        //                if (!isSaved)
-        //                {
-        //                    return BadRequest("Save location failed");
-        //                }
-        //            }
-
-        //            return Ok("The practice: " + practice.practice_name + " was added successfully");
-
-
-
-        //        }
-        //        return BadRequest("The question was not saved");
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("no open session");
-        //    }
-        //}
 
         //שמירת אימון חדש
         [HttpPost("InsertPractice")]
@@ -373,6 +270,75 @@ namespace prog3finalV4.Controllers
         }
 
 
+        //שליפת כל התכנים של תרגול
+        [HttpGet("GetByPracticId")]
+        [AllowAnonymous]
+        public async Task<ActionResult<PracticeDTO>> GetByPracticId(int practicId)
+        {
+            //שורה שבודקת אם הסשן חי
+            //int? findFromSession = HttpContext.Session.GetInt32("userId");
+            //Console.WriteLine("findall: " + findFromSession.ToString());
+
+            int? sessionId = HttpContext.Session.GetInt32("userId");
+            //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
+            if (sessionId != null)
+            {
+                //יצירת פרמטרים לשאילתה
+                object param = new
+                {
+                    id = practicId
+                };
+                //שליפת אימונים
+                string practicequery = "select * from practices where Id=@id";
+                var practicesRecords = await _db.GetRecordsAsync<PracticeDTO>(practicequery, param);
+
+                if (practicesRecords != null)
+                {
+                    var practiceRecord = practicesRecords.FirstOrDefault();
+
+                    //שליפת תנועה
+                    string movmentquery = "SELECT * from movment_data where practiceId=@id";
+                    var moveRecords = await _db.GetRecordsAsync<movmentDataDTO>(movmentquery, param);
+                    if (moveRecords != null)
+                    {
+                        //קישור בין כל תת טבלה לטבלת האימונים
+                        foreach (movmentDataDTO m in moveRecords)
+                        {
+                            if (m.practiceId == practiceRecord.Id)
+                            {
+                                practiceRecord.movmentData.Add(m);
+                            }
+                        }
+                    }
+
+                    //שליפת אודיו'
+                    string audioquery = "SELECT * FROM audio_data where practiceId=@id";
+                    var audioRecords = await _db.GetRecordsAsync<audioDataDTO>(audioquery, param);
+                    if (audioRecords != null)
+                    {
+
+                        //קישור בין כל תת טבלה לטבלת האימונים
+
+                        foreach (audioDataDTO a in audioRecords)
+                        {
+                            if (a.practiceId == practiceRecord.Id)
+                            {
+                                practiceRecord.audioData.Add(a);
+                            }
+                        }
+
+                    }
+
+                    //החזרה               
+                    return Ok(practiceRecord);
+                }
+                return BadRequest("no practice");
+            }
+            else
+            {
+                return BadRequest("no open session");
+            }
+        }
 
 
 
@@ -387,6 +353,5 @@ namespace prog3finalV4.Controllers
 
 
 
-
+        }
     }
-}

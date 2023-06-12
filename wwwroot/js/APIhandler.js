@@ -23,6 +23,9 @@ async function openSession(porpuse) {
         else if (porpuse == "getAll") {
             getPractices();
         }
+        else if (porpuse == "nameSummry") {
+            getNameSummary();
+        }
     } else {
         // נציג את השגיאות במידה והערך לא תקין
         const errors = response.text();
@@ -46,6 +49,21 @@ async function getName() {
     }
 }
 
+async function getNameSummary() {
+    const url = controllerUrl + `GetUserName`;
+    const response = await fetch(url);
+    //  במידה והערך שהוחזר תקין
+    if (response.ok) {
+        //  נמיר את התוכן שחזר לפורמט json
+        const data = await response.text();
+        console.log(data);
+        insertNameToHtmlSummry(data);
+    } else {
+        // נציג את השגיאות במידה והערך לא תקין
+        const errors = response.text();
+        console.log(errors);
+    }
+}
 
 
 

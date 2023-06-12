@@ -1,227 +1,227 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\SummaryFeedback.html",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\SummaryFeedback.html",
       "PackagePath": "staticwebassets\\SummaryFeedback.html"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\Web.config",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\Web.config",
       "PackagePath": "staticwebassets\\Web.config"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\allPracrices.html",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\allPracrices.html",
       "PackagePath": "staticwebassets\\allPracrices.html"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\README.md",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\README.md",
       "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\css\\style.css",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\icons\\android-chrome-192x192.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\icons\\android-chrome-192x192.png",
       "PackagePath": "staticwebassets\\icons\\android-chrome-192x192.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\icons\\android-chrome-512x512.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\icons\\android-chrome-512x512.png",
       "PackagePath": "staticwebassets\\icons\\android-chrome-512x512.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\icons\\apple-touch-icon.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\icons\\apple-touch-icon.png",
       "PackagePath": "staticwebassets\\icons\\apple-touch-icon.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\icons\\favicon-16x16.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\icons\\favicon-16x16.png",
       "PackagePath": "staticwebassets\\icons\\favicon-16x16.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\icons\\favicon-32x32.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\icons\\favicon-32x32.png",
       "PackagePath": "staticwebassets\\icons\\favicon-32x32.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\icons\\favicon.ico",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\icons\\favicon.ico",
       "PackagePath": "staticwebassets\\icons\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\Group 157.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\Group 157.png",
       "PackagePath": "staticwebassets\\images\\Group 157.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\Group 158.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\Group 158.png",
       "PackagePath": "staticwebassets\\images\\Group 158.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\HITlogo.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\HITlogo.png",
       "PackagePath": "staticwebassets\\images\\HITlogo.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\Union.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\Union.png",
       "PackagePath": "staticwebassets\\images\\Union.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\hans-eiskonen-8Pm_A-OHJGg-unsplash.jpg",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\hans-eiskonen-8Pm_A-OHJGg-unsplash.jpg",
       "PackagePath": "staticwebassets\\images\\hans-eiskonen-8Pm_A-OHJGg-unsplash.jpg"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\logo.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\logo2.svg",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\logo2.svg",
       "PackagePath": "staticwebassets\\images\\logo2.svg"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\images\\pexels-weldi-studio-design-8675586-1920x1080-30fps.mp4",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\images\\pexels-weldi-studio-design-8675586-1920x1080-30fps.mp4",
       "PackagePath": "staticwebassets\\images\\pexels-weldi-studio-design-8675586-1920x1080-30fps.mp4"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\index.html",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\APIHAndlerForAdd.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\APIHAndlerForAdd.js",
       "PackagePath": "staticwebassets\\js\\APIHAndlerForAdd.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\APIhandler.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\APIhandler.js",
       "PackagePath": "staticwebassets\\js\\APIhandler.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\SummaryFeedbackMain.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\SummaryFeedbackMain.js",
       "PackagePath": "staticwebassets\\js\\SummaryFeedbackMain.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\VAD.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\VAD.js",
       "PackagePath": "staticwebassets\\js\\VAD.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\allpracticesMain.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\allpracticesMain.js",
       "PackagePath": "staticwebassets\\js\\allpracticesMain.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\audioScript.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\audioScript.js",
       "PackagePath": "staticwebassets\\js\\audioScript.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\indexMain.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\indexMain.js",
       "PackagePath": "staticwebassets\\js\\indexMain.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\main.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\main.js",
       "PackagePath": "staticwebassets\\js\\main.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\moveNetScript.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\moveNetScript.js",
       "PackagePath": "staticwebassets\\js\\moveNetScript.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\myMonotonyScript.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\myMonotonyScript.js",
       "PackagePath": "staticwebassets\\js\\myMonotonyScript.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\tune.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\js\\tune.js",
       "PackagePath": "staticwebassets\\js\\tune.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\manifest.json",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\manifest.json",
       "PackagePath": "staticwebassets\\manifest.json"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\practice.html",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\practice.html",
       "PackagePath": "staticwebassets\\practice.html"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\practiceNoFeedback.html",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\practiceNoFeedback.html",
       "PackagePath": "staticwebassets\\practiceNoFeedback.html"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\response_1685174734001.json",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\response_1685174734001.json",
       "PackagePath": "staticwebassets\\response_1685174734001.json"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\service-worker.js",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\service-worker.js",
       "PackagePath": "staticwebassets\\service-worker.js"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\ipad_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\ipad_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\ipad_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\ipadpro1_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\ipadpro1_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\ipadpro1_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\ipadpro2_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\ipadpro2_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\ipadpro2_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\ipadpro3_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\ipadpro3_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\ipadpro3_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\iphone5_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\iphone5_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\iphone5_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\iphone6_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\iphone6_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\iphone6_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\iphoneplus_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\iphoneplus_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\iphoneplus_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\iphonex_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\iphonex_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\iphonex_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\iphonexr_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\iphonexr_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\iphonexr_splash.png"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\splashscreens\\iphonexsmax_splash.png",
+      "Id": "C:\\Users\\user\\Documents\\prog3finalV5\\wwwroot\\splashscreens\\iphonexsmax_splash.png",
       "PackagePath": "staticwebassets\\splashscreens\\iphonexsmax_splash.png"
     },
     {

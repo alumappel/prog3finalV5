@@ -1,6 +1,11 @@
+﻿window.addEventListener("DOMContentLoaded", function () {
+    // בטיעינת עמוד
+    openSession("nameSummry");
+});
 
-
-
+function insertNameToHtmlSummry(name) {
+    document.getElementById("namePlace").innerHTML += name;
+}
 
 function print(){
 var element = document.getElementById('content');
