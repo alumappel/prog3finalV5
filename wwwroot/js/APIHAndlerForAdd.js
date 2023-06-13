@@ -90,7 +90,7 @@ const serverUrl = `./api/`
          //const toastLiveExample = document.getElementById('editToast');
          //const toast = new bootstrap.Toast(toastLiveExample);
          //toast.show();
-         window.location.href = "SummaryFeedback.html";
+         window.location.href = 'SummaryFeedback.html?id=' + response;
      } else {
          // נציג את השגיאות במידה והערך לא תקין
          const errors = await response.text();

@@ -256,7 +256,7 @@ namespace prog3finalV4.Controllers
 
                     }
 
-                    return Ok("The practice: " + practice.practice_name + " was added successfully");
+                    return Ok(newpracticeId);
 
 
 
@@ -278,65 +278,73 @@ namespace prog3finalV4.Controllers
             //שורה שבודקת אם הסשן חי
             //int? findFromSession = HttpContext.Session.GetInt32("userId");
             //Console.WriteLine("findall: " + findFromSession.ToString());
-
-            int? sessionId = HttpContext.Session.GetInt32("userId");
-            //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
-            if (sessionId != null)
+            if (practicId != null && practicId > 0)
             {
-                //יצירת פרמטרים לשאילתה
-                object param = new
+
+
+                int? sessionId = HttpContext.Session.GetInt32("userId");
+                //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
+                if (sessionId != null)
                 {
-                    id = practicId
-                };
-                //שליפת אימונים
-                string practicequery = "select * from practices where Id=@id";
-                var practicesRecords = await _db.GetRecordsAsync<PracticeDTO>(practicequery, param);
-
-                if (practicesRecords != null)
-                {
-                    var practiceRecord = practicesRecords.FirstOrDefault();
-
-                    //שליפת תנועה
-                    string movmentquery = "SELECT * from movment_data where practiceId=@id";
-                    var moveRecords = await _db.GetRecordsAsync<movmentDataDTO>(movmentquery, param);
-                    if (moveRecords != null)
+                    //יצירת פרמטרים לשאילתה
+                    object param = new
                     {
-                        //קישור בין כל תת טבלה לטבלת האימונים
-                        foreach (movmentDataDTO m in moveRecords)
-                        {
-                            if (m.practiceId == practiceRecord.Id)
-                            {
-                                practiceRecord.movmentData.Add(m);
-                            }
-                        }
-                    }
+                        id = practicId
+                    };
+                    //שליפת אימונים
+                    string practicequery = "select * from practices where Id=@id";
+                    var practicesRecords = await _db.GetRecordsAsync<PracticeDTO>(practicequery, param);
 
-                    //שליפת אודיו'
-                    string audioquery = "SELECT * FROM audio_data where practiceId=@id";
-                    var audioRecords = await _db.GetRecordsAsync<audioDataDTO>(audioquery, param);
-                    if (audioRecords != null)
+                    if (practicesRecords != null)
                     {
+                        var practiceRecord = practicesRecords.FirstOrDefault();
 
-                        //קישור בין כל תת טבלה לטבלת האימונים
-
-                        foreach (audioDataDTO a in audioRecords)
+                        //שליפת תנועה
+                        string movmentquery = "SELECT * from movment_data where practiceId=@id";
+                        var moveRecords = await _db.GetRecordsAsync<movmentDataDTO>(movmentquery, param);
+                        if (moveRecords != null)
                         {
-                            if (a.practiceId == practiceRecord.Id)
+                            //קישור בין כל תת טבלה לטבלת האימונים
+                            foreach (movmentDataDTO m in moveRecords)
                             {
-                                practiceRecord.audioData.Add(a);
+                                if (m.practiceId == practiceRecord.Id)
+                                {
+                                    practiceRecord.movmentData.Add(m);
+                                }
                             }
                         }
 
-                    }
+                        //שליפת אודיו'
+                        string audioquery = "SELECT * FROM audio_data where practiceId=@id";
+                        var audioRecords = await _db.GetRecordsAsync<audioDataDTO>(audioquery, param);
+                        if (audioRecords != null)
+                        {
 
-                    //החזרה               
-                    return Ok(practiceRecord);
+                            //קישור בין כל תת טבלה לטבלת האימונים
+
+                            foreach (audioDataDTO a in audioRecords)
+                            {
+                                if (a.practiceId == practiceRecord.Id)
+                                {
+                                    practiceRecord.audioData.Add(a);
+                                }
+                            }
+
+                        }
+
+                        //החזרה               
+                        return Ok(practiceRecord);
+                    }
+                    return BadRequest("no practice");
                 }
-                return BadRequest("no practice");
+                else
+                {
+                    return BadRequest("no open session");
+                }
             }
             else
             {
-                return BadRequest("no open session");
+                return BadRequest("no id sent");
             }
         }
 
@@ -353,5 +361,5 @@ namespace prog3finalV4.Controllers
 
 
 
-        }
     }
+}

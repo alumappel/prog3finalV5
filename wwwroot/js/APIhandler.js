@@ -129,16 +129,10 @@ async function showPractices(practices) {
             <td>${formattedTime}</td>  
 
             <td class="text-center">
-            <button id="whatchBtn" type="button" onclick="" class="table-btn rounded rounded-9">
+            <button id="whatchBtn" type="button" onclick="redirectToPage(${practice.id})" class="table-btn rounded rounded-9">
             <span class="bi bi-eye-fill icon-color">
             </button>
-            </td>
-
-            <td class="text-center">
-            <button id="exportBtn" type="button" onclick="" class="table-btn rounded rounded-9" >            
-            <span class="bi bi-file-earmark-arrow-down-fill icon-color">
-            </button>
-            </td>
+            </td>        
             
                         
             <td class="text-center" >
@@ -149,7 +143,8 @@ async function showPractices(practices) {
 
             </tr>`
         //  נזריק את השאלה לטבלה
-        table.innerHTML += myHtml;
+        table.innerHTML += myHtml;        
+
     });
 }
 
@@ -204,107 +199,33 @@ async function deletPractice(id) {
 
 
 
+//שליפת אימון אחד
+async function getPractice(practiceId) {
+    console.log("inside get practice");
+    // קריאה לבסיס הנתונים ומחיקת השאלה לפי המזהה שלה    
+    const url = `${controllerUrl}GetByPracticId?practicId=${practiceId}`;
+    const params = {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+        },
+    }
+    // ביצוע הקריאה לשרת, נשלח את הנתיב והפרמטרים שהגדרנו    
+    const response = await fetch(url, params);
+    //  במידה והערך שהוחזר תקין
+    if (response.ok) {
+        //  נמיר את התוכן שחזר לפורמט json
+        const data = await response.json();
+        //console.log(data);
 
-////פונקציה שקוראת בלחיצה על כפתור הוספה לבסיס נתונים
-//async function addPractice() {
-//    console.log("inside add practice");
+        insertDataToHtmlSummry(data);
+    }
+    else {
+        // נציג את השגיאות במידה והערך לא תקין
+        const errors = response.text();
+        console.log(errors);
+    }
+}
 
-//    //בדיקת זמן התרגול המירבי 
-//    const timerValue = document.getElementById("timer").value;
-//    // Split the timer value into minutes and seconds
-//    const [minutesStr, secondsStr] = timerValue.split(':');
-//    // Parse the minutes and seconds as integers
-//    const minutes = parseInt(minutesStr);
-//    const seconds = parseInt(secondsStr);
-//    // Create a new Date object with the current date
-//    const currentTime = new Date();
-//    // Set the minutes and seconds of the Date object
-//    currentTime.setMinutes(minutes);
-//    currentTime.setSeconds(seconds);
-//    let overallLength = currentTime;
-
-//    //שמירת שם מהתיבה  
-//    let newName = document.getElementById("nameInput2").value;
-//    //ערך דיפולטיבי
-//    if (newName.length === 0) {
-//        newName = "אימון ללא שם";
-//    }
-
-//    //שמירת תאריך
-//    const date = new Date().toISOString();
-
-//    //הזנת ערכים לאובייקט
-//    const practiceObj = {
-//        "id": 0,
-//        "practice_name": newName,
-//        "date": date,
-//        "overall_length": overallLength,
-//        "movmentData": [
-          
-//        ],
-//        "audioData": [
-          
-//        ],
-//        "userId": 0
-//      }
-
-////    הכנסת המערכים בללולאות
-//      audioArry.forEach((element) => {
-//        const formating=
-//        {
-//            "id": 0,
-//            "averageVolumeForMeter": element[0],
-//            "pichMax": element[1],
-//            "pichMin": element[2],
-//            "practiceId": 0
-//          }
-//        practiceObj.audioData.push(formating);
-//    });
-
-//    MoveArry.forEach((element) => {
-//        const formating=
-//        {
-//            "id": 0,
-//            "frameStateOK": element[0],
-//            "eyesStateOK": element[1],
-//            "rightHandState": element[2],
-//            "leftHandState": element[3],
-//            "practiceId": 0
-//          }
-//        practiceObj.movmentData.push(formating);
-//    });
-
-//    //הדפסת האוביקט של השאלה לצורך בדיקה
-//    console.log(practiceObj);
-//    //פה נבצע את הקריאה לקונטרולר
-
-//    // const url = `${controllerUrl}InsertPractice`;
-//    // // שמירת הפרמטרים לשליפה: סוג השליפה
-//    // const params = {
-//    //     method: 'POST',
-//    //     headers: {
-//    //         'Content-Type': 'application/json'
-//    //     },
-//    //     body: JSON.stringify(practiceObj)
-//    // }
-//    // // ביצוע הקריאה לשרת, נשלח את הנתיב והפרמטרים שהגדרנו
-//    // const response = await fetch(url, params);
-//    // // במידה והקריאה הצליחה
-//    // if (response.ok) {
-//    //     //הודעה אישור
-//    //     const toastLiveExample = document.getElementById('editToast');
-//    //     const toast = new bootstrap.Toast(toastLiveExample);
-//    //     toast.show();
-//    // } else {
-//    //     // נציג את השגיאות במידה והערך לא תקין
-//    //     const errors = await response.text();
-//    //     console.log(errors);
-//    //     const toastLiveExample = document.getElementById('errorToast');
-//    //     const toast = new bootstrap.Toast(toastLiveExample);
-//    //     toast.show();
-//    // }
-
-
-//}
 
 
