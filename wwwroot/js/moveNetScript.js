@@ -6,6 +6,7 @@ let runEyes = true;
 var moveAnalysisStart = false;
 
 const MoveArry = [];
+const testingMoveArry = [];
 
 let frameCount = 0;
 const frameNumForCalculate = 30;
@@ -47,7 +48,7 @@ async function initSkeleton(videoHeight, videoWidth) {
 
       // Check that at least one pose is detected
       if (poses.length > 0) {
-        const keypoints = poses[0].keypoints;
+        const keypoints = poses[0].keypoints;        
 
         // // Draw keypoints
         // keypoints.forEach(keypoint => {
@@ -71,7 +72,11 @@ async function initSkeleton(videoHeight, videoWidth) {
         //   ctx.stroke();
         // });
 
-
+        // עבור כיול
+        let keypoint=JSON.stringify(poses[0].keypoints);
+        // console.log(keypoint);
+        testingMoveArry.push(keypoint);
+        
         // קריאה למיקום בפריים
         fullBodyInFrame(keypoints, videoHeight, videoWidth);
         // קריאה לתנועות ידיים

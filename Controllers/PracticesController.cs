@@ -353,6 +353,62 @@ namespace prog3finalV4.Controllers
 
 
 
+        //שמירת נתוני כיול חדשים
+        [HttpPost("InsertTesting")]
+        //הפונקציה מקבלת כפרמטר את השאלה
+        public async Task<IActionResult> InsertTesting(testingPracticeDTO practice)
+        {
+            
+                //כתיבת שאילתת ההוספה עם כל שדות השאלה פרט למזהה שמתווסף אוטומטית
+                string query = "INSERT INTO testing_practice (practice_name, overall_length, video_height,video_width) VALUES (@practice_name,@overall_length,@video_height,@video_width)";
+                //קריאה לקובץ DbRepository, שליחת השאילתה והשאלה והחזרת המזהה של השאלה החדשה שנוצרה
+                int newpracticeId = await _db.InsertReturnId(query, practice);
+                //במידה והמזהה גדול מ-0, כלומר, ההוספה הצליחה
+                if (newpracticeId > 0)
+                {
+
+                    //בדיקה שנעשתה מדידה
+                    //עדכון ID בכל אחת מהתת טבלאות 
+                    //שמירה בטבלה המתאימה
+                    //בדיקת שגיאה
+                    if (practice.movmentData.Count > 0)
+                    {
+                        foreach (testingMovmentDTO m in practice.movmentData)
+                        {
+                            m.practiceId = newpracticeId;
+
+                            string Mquery = "INSERT INTO testing_movment (keypoints,practiceId) VALUES (@keypoints,@practiceId)";
+                            bool isSaved = await _db.SaveDataAsync(Mquery, m);
+                            if (isSaved != true)
+                            {
+                                return BadRequest("save movment failed");
+                            }
+                        }
+                    }
+                    if (practice.audioData.Count > 0)
+                    {
+                        foreach (testingAudioDTO a in practice.audioData)
+                        {
+                            a.practiceId = newpracticeId;
+
+                            string Aquery = "INSERT INTO testing_audio (average_volume_for_meter,pichMax,pichMin,practiceId) VALUES (@averageVolumeForMeter,@pichMax,@pichMin,@practiceId)";
+                            bool isSaved = await _db.SaveDataAsync(Aquery, a);
+                            if (isSaved != true)
+                            {
+                                return BadRequest("save audio failed");
+                            }
+                        }
+
+                    }
+
+                    return Ok(newpracticeId);
+
+
+
+                }
+                return BadRequest("The question was not saved");
+            
+        }
 
 
 

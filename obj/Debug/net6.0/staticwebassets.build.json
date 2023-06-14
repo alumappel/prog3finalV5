@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SjHRi54kG2NQkhJpPRQpVqeq1bMr/vbd5WpYguErKcw=",
+  "Hash": "CFkLONpeiEQ8J7A11yMZxTY0eiww64g8bdNq4o/0LWo=",
   "Source": "prog3finalV4",
   "BasePath": "_content/prog3finalV4",
   "Mode": "Default",
@@ -595,6 +595,23 @@
       "OriginalItemSpec": "wwwroot\\js\\main.js"
     },
     {
+      "Identity": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\mainTesting.js",
+      "SourceId": "prog3finalV4",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\",
+      "BasePath": "_content/prog3finalV4",
+      "RelativePath": "js/mainTesting.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\mainTesting.js"
+    },
+    {
       "Identity": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\moveNetScript.js",
       "SourceId": "prog3finalV4",
       "SourceType": "Discovered",
@@ -714,12 +731,12 @@
       "OriginalItemSpec": "wwwroot\\practice.html"
     },
     {
-      "Identity": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\practiceNoFeedback.html",
+      "Identity": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\practiceTesting.html",
       "SourceId": "prog3finalV4",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\",
       "BasePath": "_content/prog3finalV4",
-      "RelativePath": "practiceNoFeedback.html",
+      "RelativePath": "practiceTesting.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -728,7 +745,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\practiceNoFeedback.html"
+      "OriginalItemSpec": "wwwroot\\practiceTesting.html"
     },
     {
       "Identity": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\response_1685174734001.json",

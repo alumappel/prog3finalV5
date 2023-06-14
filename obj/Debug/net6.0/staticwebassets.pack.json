@@ -153,6 +153,10 @@
       "PackagePath": "staticwebassets\\js\\main.js"
     },
     {
+      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\mainTesting.js",
+      "PackagePath": "staticwebassets\\js\\mainTesting.js"
+    },
+    {
       "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\js\\moveNetScript.js",
       "PackagePath": "staticwebassets\\js\\moveNetScript.js"
     },
@@ -173,8 +177,8 @@
       "PackagePath": "staticwebassets\\practice.html"
     },
     {
-      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\practiceNoFeedback.html",
-      "PackagePath": "staticwebassets\\practiceNoFeedback.html"
+      "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\practiceTesting.html",
+      "PackagePath": "staticwebassets\\practiceTesting.html"
     },
     {
       "Id": "C:\\Users\\Aluma\\Documents\\prog3finalAPI\\prog3finalV4\\wwwroot\\response_1685174734001.json",
