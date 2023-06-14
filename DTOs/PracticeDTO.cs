@@ -8,7 +8,7 @@ namespace prog3finalV4.DTOs
         public int Id { get; set; }
         public string? practice_name { get; set; }
         public DateTime date { get; set; }
-        public double overall_length { get; set; }        
+        public int overall_length { get; set; }        
         public List<movmentDataDTO> movmentData { get; set; }
         public List<audioDataDTO> audioData { get; set; }
 

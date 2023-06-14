@@ -116,9 +116,10 @@ async function showPractices(practices) {
         var dateStr = ("00" + date.getDate()).slice(-2) + "/" + ("00" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
         var timeStr = ("00" + date.getHours()).slice(-2) + ":" + ("00" + date.getMinutes()).slice(-2);
 
-        //המרת אורך כולל
-        let seconds = Math.floor(practice.overall_length * 60);
-        let formattedTime = new Date(seconds * 1000).toISOString().substring(14, 19);
+        //המרת אורך כולל        
+        const minutes = Math.floor(practice.overall_length / 60);
+        const remainingSeconds = practice.overall_length % 60;
+        let formattedTime = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 
         //  עבור כל שאלה נבנה שורה בטבלה        
         const myHtml = `<tr>
@@ -143,7 +144,7 @@ async function showPractices(practices) {
 
             </tr>`
         //  נזריק את השאלה לטבלה
-        table.innerHTML += myHtml;        
+        table.innerHTML += myHtml;
 
     });
 }

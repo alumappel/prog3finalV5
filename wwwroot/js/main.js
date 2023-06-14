@@ -243,8 +243,6 @@ function startTimer() {
 }
 
 function stopAll() {
-
-
     // עוצר הכל
     clearInterval(timer); // Stop the timer
     runDetector = false;// תנועה
