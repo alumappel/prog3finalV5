@@ -58,9 +58,9 @@ async function startVideo() {
   navigator.mediaDevices.getUserMedia(constraints)
     .then(function (mediaStream) {
       player.srcObject = mediaStream;
-      player.addEventListener('loadedmetadata', function () {
-        videoWidth = player.videoWidth;
-        videoHeight = player.videoHeight;
+        player.addEventListener('loadedmetadata', function () {
+            videoWidth = player.videoWidth;
+            videoHeight = player.videoHeight;
       });
     })
     .catch(function (err) { console.log(err.name + ": " + err.message); });

@@ -131,16 +131,20 @@
                 <div class="row justify-content-around" style="height: 28vh;margin-bottom: 4vh;">
                     <div id="volDiv" class="col-7 bg">
                         <h3 style="margin-bottom: 1rem;">עוצמת קול</h3>
-                        <input type="range" min="0" max="100" value="0" class="slider reset-range" id="volRange">
+                        <input type="range" min="0"  class="slider reset-range" id="volRange">
                     </div>
-                    <div id="pitchDiv" class="col-4  bg">
+                    <div  class="col-4  bg">
+                        <h3>גיוון בדיבור</h3>
+                        <p>לא פעיל</p>
+                    </div>
+                    <div id="pitchDiv" class="col-4  bg d-none">
                         <h3>גיוון בדיבור</h3>
                         <p id="pitchFeedback"></p>
                     </div>
                 </div>
                 <div class="row justify-content-around" style="height: 28vh;">
                     <div class="col-7 bg">
-                        <h3 style="margin-bottom: 1rem;">קצב דיבור</h3>
+                        <h3 style="margin-bottom: 1rem;">קצב דיבור - לא פעיל</h3>
                         <input type="range" min="0" max="100" value="0" class="slider reset-range" id="speedRange">
                     </div>
                     <div class="col-4 d-flex align-items-center justify-content-center">

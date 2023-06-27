@@ -1,7 +1,7 @@
 // Importing libraries
 import { PitchDetector } from "https://esm.sh/pitchy@4";
 
-export var audioAnalysisStart=false;
+export var audioAnalysisStart = false;
 export const audioArry = [];
 
 // window.addEventListener("DOMContentLoaded", function () {
@@ -13,7 +13,7 @@ let audioContext;
 let scriptNode;
 
 export function analyzeAudioFromMicrophone() {
-   
+
     // Set up audio context and media stream
     audioContext = new AudioContext();
     // Create an AnalyserNode instance to analyze the audio signal
@@ -53,7 +53,7 @@ export function analyzeAudioFromMicrophone() {
                         averageVolume += amplitude * amplitude;
                     }
                     // מדובר על אמפליטודות ממומרות לדציבלים - כאשר נשהו חישוב נוסף שצריך לבצע כדי להגיע לדציבלים.
-                    const averageVolumeForMeter = Math.sqrt(averageVolume / tempBuffer.length);                    
+                    const averageVolumeForMeter = Math.sqrt(averageVolume / tempBuffer.length);
 
 
                     // here should bee the pich code
@@ -93,8 +93,8 @@ export function analyzeAudioFromMicrophone() {
 
                     audioArry.push([averageVolumeForMeter, pichMax, pichMin]);
                     showDataArry(audioArry);
-                    // console.log(audioArry);
-                    audioAnalysisStart=true;
+                    //console.log(audioArry);
+                    audioAnalysisStart = true;
 
 
                 }
@@ -108,11 +108,11 @@ export function analyzeAudioFromMicrophone() {
 export function stopAudioAnalysis() {
     audioAnalysisStart = false; // Set analysis start flag to false
     if (audioContext && scriptNode) {
-      scriptNode.onaudioprocess = null; // Remove the onaudioprocess event listener
-      scriptNode.disconnect(); // Disconnect the script node
-      audioContext.close(); // Close the audio context
+        scriptNode.onaudioprocess = null; // Remove the onaudioprocess event listener
+        scriptNode.disconnect(); // Disconnect the script node
+        audioContext.close(); // Close the audio context
     }
-  }
+}
 
 
 //show dataArry live
@@ -169,23 +169,53 @@ function showDataArry(dataArry) {
 
     // vol
     const volElement = document.getElementById("volRange");
-    // המרה לאחוזים
-    const dbToPrecenteg = (dataArry[dataArry.length-1][0]*100)/0.20
-    volElement.value=dbToPrecenteg;
+    const volDivElement = document.getElementById("volDiv");
+    let currentVol = 10000 * (dataArry[dataArry.length - 1][0]);
+   //מוכפל בגלל שרכיב הHTML לא מתייחס לאחרי נקודה עשרונית
+    // נתונים מכיול
+    const avgVol = 0.070163540135;
+    const stvVol = 0.031185743127;
 
-    const volDivElement=document.getElementById("volDiv");
-    if (dbToPrecenteg > 25 && dbToPrecenteg < 75) {
-        if ( volDivElement.classList.contains("redG")) {
-            volDivElement.classList.remove("redG");
-        }
-        volDivElement.classList.add("greenG");
-    }
-    else {
-        if ( volDivElement.classList.contains("greenG")) {
+    const lowBorderGood = 10000 *(avgVol - stvVol);
+    const highBorderGood = 10000 *(avgVol + stvVol);
+    const lowBorder = 0;
+    const highborder = 10000 * (avgVol + stvVol + avgVol - stvVol);
+
+    // קביעת מקסימום לגרף
+    volElement.max = highborder;
+    // בדיקת נתוני קצה
+    if (currentVol >= highborder) {
+        // מעל לגבול עליון של הגרף
+        volElement.value = highborder;
+        if (volDivElement.classList.contains("greenG")) {
             volDivElement.classList.remove("greenG");
         }
         volDivElement.classList.add("redG");
     }
+    else if (currentVol <= 0.01) {
+        // רף תחתון של הגרף או נמוך כדי למדוד
+        volElement.value = lowBorder;
+        if (volDivElement.classList.contains("greenG")) {
+            volDivElement.classList.remove("greenG");
+        }
+        volDivElement.classList.add("redG");
+    }
+    else {
+        volElement.value = currentVol;
+        if (volElement.value > lowBorderGood && volElement.value < highBorderGood) {
+            if (volDivElement.classList.contains("redG")) {
+                volDivElement.classList.remove("redG");
+            }
+            volDivElement.classList.add("greenG");
+        }
+        else {
+            if (volDivElement.classList.contains("greenG")) {
+                volDivElement.classList.remove("greenG");
+            }
+            volDivElement.classList.add("redG");
+        }
+    }
+ 
 }
 
 
