@@ -308,15 +308,26 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
 
 
 
+let frameCounter = 0;
 
+let lGoodCounter = 0;
+let rGoodCounter = 0;
+let lHideCounter = 0;
+let rHideCounter = 0;
+let lLittelCounter = 0;
+let rLittelCounter = 0;
+let lMuchCounter = 0;
+let rMuchCounter = 0;
+
+
+//document.getElementById("rightHandFeedback").innerHTML = "";
+//document.getElementById("leftHandFeedback").innerHTML = "";
 // פונקצייה שבודקת תנועות ידיים
 function handsMovment(keypoints) {
     let hand;
     let axis;
     const rightelement = document.getElementById("rightHandDiv");
     const leftelement = document.getElementById("leftHandDiv");
-    document.getElementById("rightHandFeedback").innerHTML = "";
-    document.getElementById("leftHandFeedback").innerHTML = "";
     // נתונים מכיול
     const leftX = 19.764;
     const leftY = 13.782;
@@ -325,6 +336,7 @@ function handsMovment(keypoints) {
 
     //בדיקה שיש רצון לבצע ניתוח
     if (runHands == true) {
+        frameCounter++;
         // בדיקה שיש וודאות במציאת הנקודה
         //שמירת המיקום במערך הזמני    
         handsLocation.push({ left: keypoints[9], right: keypoints[10] });
@@ -345,29 +357,15 @@ function handsMovment(keypoints) {
         // בדיקת תקינות
         if (leftXAvg < (leftX / 2) && leftYAvg < (leftY / 2)) {
             //  אין מספיק
-            if (leftelement.classList.contains("greenG")) {
-                leftelement.classList.remove("greenG");
-            }
-            leftelement.classList.add("redG");
-            document.getElementById("leftHandFeedback").innerHTML = "אינך מזיז/ה את היד מספיק";
-            leftHandstaticCount++;
+            lLittelCounter++;
         }
         else if (leftXAvg > (2 * leftX) && leftYAvg > (2 * leftY)) {
             // יותר מדי
-            if (leftelement.classList.contains("greenG")) {
-                leftelement.classList.remove("greenG");
-            }
-            leftelement.classList.add("redG");
-            document.getElementById("leftHandFeedback").innerHTML = "את/ה מזיז/ה את היד יותר מדי";
-            leftHandToMuchCount++;
+            lMuchCounter++;
         }
         else {
             //תקין
-            if (leftelement.classList.contains("redG")) {
-                leftelement.classList.remove("redG");
-            }
-            leftelement.classList.add("greenG");
-            leftHandOkCount++;
+            lGoodCounter++;
         }
 
         // יד ימין
@@ -385,63 +383,128 @@ function handsMovment(keypoints) {
         // בדיקת תקינות
         if (rightXAvg < (rightX / 2) && rightYAvg < (rightY / 2)) {
             //לא מספיק
-            if (rightelement.classList.contains("greenG")) {
-                rightelement.classList.remove("greenG");
-            }
-            rightelement.classList.add("redG");
-            document.getElementById("rightHandFeedback").innerHTML = "אינך מזיז/ה את היד מספיק";
-            rightHandstaticCount++;
+            rLittelCounter++;
         }
         else if (rightXAvg > (2 * rightX) && rightYAvg > (2 * rightY)) {
             //יותר מדי
-            if (rightelement.classList.contains("greenG")) {
-                rightelement.classList.remove("greenG");
-            }
-            rightelement.classList.add("redG");
-            document.getElementById("rightHandFeedback").innerHTML = "את/ה מזיז/ה את היד יותר מדי";
-            rightHandToMuchCount++;
+            rMuchCounter++;
         }
         else {
             //תקין
-            if (rightelement.classList.contains("redG")) {
-                rightelement.classList.remove("redG");
+            rGoodCounter++;
+        }
+
+
+
+
+
+
+        // בדיקת יד מוסתרת
+        //חותך כל פריים נתונים מהחצי שנייה האחרונה
+        let slicedHands = handsLocation.slice(-frameNumForCalculate);
+        // יד שמאל
+        // מערך המכיל רק תאים בעלי ציון נמוך
+        let filterLeft = slicedHands.filter(cell => cell.left.score < 0.7)
+        if (filterLeft.length > (slicedHands.length / 2)) {
+            // יד שמאל מוסתרת
+            lHideCounter++;
+        }
+
+        // יד ימין
+        // מערך המכיל רק תאים בעלי ציון נמוך
+        let filterRight = slicedHands.filter(cell => cell.right.score < 0.7)
+        if (filterRight.length > (slicedHands.length / 2)) {
+            // יד ימין מוסתרת
+            rHideCounter++;
+        }
+
+
+        //הדפסה
+        if (frameCounter >= 12) {
+            frameCounter = 0;
+            if (lHideCounter > 4) {
+                if (leftelement.classList.contains("greenG")) {
+                    leftelement.classList.remove("greenG");
+                }
+                leftelement.classList.add("redG");
+                document.getElementById("leftHandFeedback").innerHTML = "היד מוסתרת מהמצלמה";
+                rightHandHidedCount++;
             }
-            rightelement.classList.add("greenG");
-            rightHandOkCount++;
+            else if (lGoodCounter > 6) {
+                if (leftelement.classList.contains("redG")) {
+                    leftelement.classList.remove("redG");
+                }
+                leftelement.classList.add("greenG");
+                document.getElementById("leftHandFeedback").innerHTML = "";
+                leftHandOkCount++;
+            }
+            else if (lLittelCounter > 6) {
+                if (leftelement.classList.contains("greenG")) {
+                    leftelement.classList.remove("greenG");
+                }
+                leftelement.classList.add("redG");
+                document.getElementById("leftHandFeedback").innerHTML = "אינך מזיז/ה את היד מספיק";
+                leftHandstaticCount++;
+            }
+            else if (lMuchCounter > 6) {
+                if (leftelement.classList.contains("greenG")) {
+                    leftelement.classList.remove("greenG");
+                }
+                leftelement.classList.add("redG");
+                document.getElementById("leftHandFeedback").innerHTML = "את/ה מזיז/ה את היד יותר מדי";
+                leftHandToMuchCount++;
+
+            }
+
+
+
+            if (rHideCounter > 4) {
+                if (rightelement.classList.contains("greenG")) {
+                    rightelement.classList.remove("greenG");
+                }
+                rightelement.classList.add("redG");
+                document.getElementById("rightHandFeedback").innerHTML = "היד מוסתרת מהמצלמה";
+                rightHandHidedCount++;
+            }
+            else if (rGoodCounter > 6) {
+                if (rightelement.classList.contains("redG")) {
+                    rightelement.classList.remove("redG");
+                }
+                rightelement.classList.add("greenG");
+                document.getElementById("rightHandFeedback").innerHTML = "";
+                rightHandOkCount++;
+
+            }
+            else if (rLittelCounter > 6) {
+                if (rightelement.classList.contains("greenG")) {
+                    rightelement.classList.remove("greenG");
+                }
+                rightelement.classList.add("redG");
+                document.getElementById("rightHandFeedback").innerHTML = "אינך מזיז/ה את היד מספיק";
+                rightHandstaticCount++;
+
+            }
+            else if (rMuchCounter > 6) {
+                if (rightelement.classList.contains("greenG")) {
+                    rightelement.classList.remove("greenG");
+                }
+                rightelement.classList.add("redG");
+                document.getElementById("rightHandFeedback").innerHTML = "את/ה מזיז/ה את היד יותר מדי";
+                rightHandToMuchCount++;
+
+            }
+
+
+            lGoodCounter = 0;
+            rGoodCounter = 0;
+            lHideCounter = 0;
+            rHideCounter = 0;
+            lLittelCounter = 0;
+            rLittelCounter = 0;
+            lMuchCounter = 0;
+            rMuchCounter = 0;
         }
 
-
-    }
-
-
-
-    // בדיקת יד מוסתרת
-    //חותך כל פריים נתונים מהחצי שנייה האחרונה
-    let slicedHands = handsLocation.slice(-frameNumForCalculate);
-    // יד שמאל
-    // מערך המכיל רק תאים בעלי ציון נמוך
-    let filterLeft = slicedHands.filter(cell => cell.left.score < 0.7)
-    if (filterLeft.length > (slicedHands.length / 2)) {
-        // יד שמאל מוסתרת
-        if (leftelement.classList.contains("greenG")) {
-            leftelement.classList.remove("greenG");
-        }
-        leftelement.classList.add("redG");
-        document.getElementById("leftHandFeedback").innerHTML = "היד מוסתרת מהמצלמה";
-        leftHandHidedCount++;
-    }
-
-    // יד ימין
-    // מערך המכיל רק תאים בעלי ציון נמוך
-    let filterRight = slicedHands.filter(cell => cell.right.score < 0.7)
-    if (filterRight.length > (slicedHands.length / 2)) {
-        // יד ימין מוסתרת
-        if (rightelement.classList.contains("greenG")) {
-            rightelement.classList.remove("greenG");
-        }
-        rightelement.classList.add("redG");
-        document.getElementById("rightHandFeedback").innerHTML = "היד מוסתרת מהמצלמה";
-        rightHandHidedCount++;
     }
 }
 
@@ -484,7 +547,7 @@ function eyeTocamra(keypoints) {
         // הדפסה
         const element = document.getElementById("eyesDiv");
         if (tempCounter >= 12) {
-            if (leftNotShowCount > 10 || rightNotShowCount > 10) {              
+            if (leftNotShowCount > 10 || rightNotShowCount > 10) {
                 if (element.classList.contains("greenG")) {
                     element.classList.remove("greenG");
                 }
@@ -492,7 +555,7 @@ function eyeTocamra(keypoints) {
                 document.getElementById("eyesFeedback").innerHTML = "שימ/י לב להסתכל למצלמה " + "</br>";
                 eyesWrongCount++;
             }
-            else if (leftShowCount > 6 || rightShowCount > 6) {                
+            else if (leftShowCount > 6 || rightShowCount > 6) {
                 if (element.classList.contains("redG")) {
                     element.classList.remove("redG");
                 }
