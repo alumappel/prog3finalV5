@@ -399,30 +399,40 @@ function handsMovment(keypoints) {
 
 
 
-        // בדיקת יד מוסתרת
-        //חותך כל פריים נתונים מהחצי שנייה האחרונה
-        let slicedHands = handsLocation.slice(-frameNumForCalculate);
-        // יד שמאל
-        // מערך המכיל רק תאים בעלי ציון נמוך
-        let filterLeft = slicedHands.filter(cell => cell.left.score < 0.7)
-        if (filterLeft.length > (slicedHands.length / 2)) {
-            // יד שמאל מוסתרת
+        //// בדיקת יד מוסתרת        
+        if (keypoints[9].score < 0.7) {
             lHideCounter++;
         }
-
-        // יד ימין
-        // מערך המכיל רק תאים בעלי ציון נמוך
-        let filterRight = slicedHands.filter(cell => cell.right.score < 0.7)
-        if (filterRight.length > (slicedHands.length / 2)) {
-            // יד ימין מוסתרת
+        if (keypoints[10].score < 0.7) {
             rHideCounter++;
         }
+
+
+
+
+        ////חותך כל פריים נתונים מהחצי שנייה האחרונה
+        //let slicedHands = handsLocation.slice(-frameNumForCalculate);
+        //// יד שמאל
+        //// מערך המכיל רק תאים בעלי ציון נמוך
+        //let filterLeft = slicedHands.filter(cell => cell.left.score < 0.7)
+        //if (filterLeft.length > (slicedHands.length / 2)) {
+        //    // יד שמאל מוסתרת
+        //    lHideCounter++;
+        //}
+
+        //// יד ימין
+        //// מערך המכיל רק תאים בעלי ציון נמוך
+        //let filterRight = slicedHands.filter(cell => cell.right.score < 0.7)
+        //if (filterRight.length > (slicedHands.length / 2)) {
+        //    // יד ימין מוסתרת
+        //    rHideCounter++;
+        //}
 
 
         //הדפסה
         if (frameCounter >= 12) {
             frameCounter = 0;
-            if (lHideCounter > 4) {
+            if (lHideCounter > 10) {
                 if (leftelement.classList.contains("greenG")) {
                     leftelement.classList.remove("greenG");
                 }
@@ -458,7 +468,7 @@ function handsMovment(keypoints) {
 
 
 
-            if (rHideCounter > 4) {
+            if (rHideCounter > 10) {
                 if (rightelement.classList.contains("greenG")) {
                     rightelement.classList.remove("greenG");
                 }

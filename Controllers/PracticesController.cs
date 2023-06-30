@@ -256,7 +256,8 @@ namespace prog3finalV4.Controllers
 
                     }
 
-                    return Ok(newpracticeId);
+                    string idToReturn= newpracticeId.ToString();
+                    return Ok(idToReturn);
 
 
 
