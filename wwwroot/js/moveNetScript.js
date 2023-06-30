@@ -142,7 +142,7 @@ let goodCounter = 0;
 let badCounter = 0;
 function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
     runCounter++;
-        //בדיקה שיש רצון לבצע ניתוח
+    //בדיקה שיש רצון לבצע ניתוח
     if (runFrame == true) {
         //בדיקה של אברים בפריים
         let eyesTop = false;
@@ -271,7 +271,7 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
 
 
         // הדפסת משוב כל פריים 10 רק בוודאות, אם המערכת לא החלטית זה ידלג על הדפסה
-        document.getElementById("tempConsol").innerHTML = "למעה עיניים - " + eyesTop.toString() + " </br> למטה כתפיים - " + solderButtom.toString() + "</br> צדדים - " + sides.toString() + "</br> רחוק - " + Faraway.toString() + "</br> קרוב - " + Closeup.toString();
+        //document.getElementById("tempConsol").innerHTML = "למעה עיניים - " + eyesTop.toString() + " </br> למטה כתפיים - " + solderButtom.toString() + "</br> צדדים - " + sides.toString() + "</br> רחוק - " + Faraway.toString() + "</br> קרוב - " + Closeup.toString();
         if (eyesTop == false || solderButtom == false || sides == false || Faraway == false || Closeup == false) {
             badCounter++
         }
@@ -283,14 +283,14 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
 
         if (runCounter > 12) {
             runCounter = 0;
-            if (badCounter>=8) {
+            if (badCounter >= 8) {
                 if (document.getElementById("overlayBorderColor").classList.contains("green-outline")) {
                     document.getElementById("overlayBorderColor").classList.remove("green-outline");
                 }
                 document.getElementById("overlayBorderColor").classList.add("red-outline");
                 outsideFrameCount++;
             }
-            else if(goodCounter>=8) {
+            else if (goodCounter >= 8) {
                 if (document.getElementById("overlayBorderColor").classList.contains("red-outline")) {
                     document.getElementById("overlayBorderColor").classList.remove("red-outline");
                 }
@@ -301,7 +301,7 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
             badCounter = 0;
         }
     }
-    
+
 }
 
 
@@ -454,56 +454,59 @@ function handsMovment(keypoints) {
 
 
 //פונקציה שבודקת מבט למצלמה
+let tempCounter = 0;
+// ספירת חוסר נראות לימין ולשמאל בנפד
+let rightNotShowCount = 0;
+let leftNotShowCount = 0;
+let rightShowCount = 0;
+let leftShowCount = 0;
 function eyeTocamra(keypoints) {
+
     //בדיקה שיש רצון לבצע ניתוח
     if (runEyes == true) {
-        // בדיקה שיש וודאות במציאת הנקודה
-        //שמירת המיקום במערך הזמני    
-        eyesLocation.push(keypoints[2]);
-        eyesLocation.push(keypoints[1]);
+        tempCounter++;
 
-        // כל X פריים מנתחים:
-        if (frameCount % frameNumForCalculate == 0) {
-            // שמירה במערך זמני
-            const eyesLocationTemp = eyesLocation;
-            // איפוס המערך
-            eyesLocation = [];
+        if (keypoints[2].score < 0.65) {
+            leftNotShowCount++;
+        }
+        else {
+            leftShowCount++;
+        }
 
-            // ספירת חוסר נראות לימין ולשמאל בנפד
-            let rightNotShowCount = 0;
-            let leftNotShowCount = 0;
+        if (keypoints[3].score < 0.65) {
+            rightNotShowCount++;
+        }
+        else {
+            rightShowCount++;
+        }
 
-            for (let i = 0; i < eyesLocationTemp.length - 1; i += 2) {
-                if (eyesLocationTemp[i].score < 0.65) {
-                    rightNotShowCount++;
-                }
-            }
-            for (let i = 1; i < eyesLocationTemp.length - 1; i += 2) {
-                if (eyesLocationTemp[i].score < 0.65) {
-                    leftNotShowCount++;
-                }
-            }
 
-            // הדפסה
-            const element = document.getElementById("eyesDiv");
-            document.getElementById("eyesFeedback").innerHTML = "";
-            if (rightNotShowCount > 0.666 * frameNumForCalculate || leftNotShowCount > 0.666 * frameNumForCalculate) {
+        // הדפסה
+        const element = document.getElementById("eyesDiv");
+        if (tempCounter >= 12) {
+            if (leftNotShowCount > 10 || rightNotShowCount > 10) {              
                 if (element.classList.contains("greenG")) {
                     element.classList.remove("greenG");
                 }
                 element.classList.add("redG");
-                document.getElementById("eyesFeedback").innerHTML += "שים לב להסתכל למצלמה " + "</br>";
+                document.getElementById("eyesFeedback").innerHTML = "שימ/י לב להסתכל למצלמה " + "</br>";
                 eyesWrongCount++;
             }
-            else {
+            else if (leftShowCount > 6 || rightShowCount > 6) {                
                 if (element.classList.contains("redG")) {
                     element.classList.remove("redG");
                 }
                 element.classList.add("greenG");
+                document.getElementById("eyesFeedback").innerHTML = "";
                 eyesOkcount++;
-                // document.getElementById("feedback").innerHTML += "מבט למצלמה מעולה!" + "</br>";
             }
+            tempCounter = 0;
+            rightShowCount = 0;
+            leftShowCount = 0;
+            leftNotShowCount = 0;
+            rightNotShowCount = 0;
         }
+
     }
 }
 
