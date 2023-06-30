@@ -109,41 +109,38 @@
 
 
             <div class="col-6" style="height: 90vh;">
-                <div class="row justify-content-around" style="height: 24vh;margin-bottom: 4vh;">
-                    <div id="handsDiv" class="col-7 bg">
+                <div class="row justify-content-around" style="height: 34vh;margin-bottom: 4vh;">
+                    <div id="handsDiv" class="col-11 bg">
                         <h3>תנועות ידיים</h3>
-                        <div class="row  justify-content-around" style="padding-top: 1rem;height: 15vh;">
+                        <div class="row  justify-content-around" style="padding-top: 1rem;height: 24vh;">
                             <div id="rightHandDiv" class="col-5 bg">
-                                <h4>ימין</h4>
-                                <p id="rightHandFeedback"></p>
+                                <h4 style="margin-top:0.3rem">ימין</h4>
+                                <p id="rightHandFeedback" style="font-size:1.3rem"></p>
                             </div>
                             <div id="leftHandDiv" class="col-5 bg">
-                                <h4>שמאל</h4>
-                                <p id="leftHandFeedback"></p>
+                                <h4 style="margin-top:0.3rem">שמאל</h4>
+                                <p id="leftHandFeedback" style="font-size:1.3rem"></p>
                             </div>
                         </div>
                     </div>
-                    <div id="eyesDiv" class="col-4  bg">
-                        <h3>מבט למצלמה</h3>
-                        <p id="eyesFeedback"></p>
-                    </div>
+                    
                 </div>
                 <div class="row justify-content-around" style="height: 28vh;margin-bottom: 4vh;">
                     <div id="volDiv" class="col-7 bg">
                         <h3 style="margin-bottom: 1rem;">עוצמת קול</h3>
                         <input type="range" min="0"  class="slider reset-range" id="volRange">
                     </div>
-                    <div  class="col-4  bg">
-                        <h3>גיוון בדיבור</h3>
-                        <p>לא פעיל</p>
+                    <div id="eyesDiv" class="col-4  bg">
+                        <h3>מבט למצלמה</h3>
+                        <p id="eyesFeedback" style="font-size:1.3rem"></p>
                     </div>
                     <div id="pitchDiv" class="col-4  bg d-none">
                         <h3>גיוון בדיבור</h3>
                         <p id="pitchFeedback"></p>
                     </div>
                 </div>
-                <div class="row justify-content-around" style="height: 28vh;">
-                    <div class="col-7 bg">
+                <div class="row justify-content-around" style="height: 20vh;">
+                    <div class="col-7 bg d-none">
                         <h3 style="margin-bottom: 1rem;">קצב דיבור - לא פעיל</h3>
                         <input type="range" min="0" max="100" value="0" class="slider reset-range" id="speedRange">
                     </div>
