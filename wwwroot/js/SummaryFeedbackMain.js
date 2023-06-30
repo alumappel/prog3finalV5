@@ -15,13 +15,15 @@ function insertNameToHtmlSummry(name) {
 function insertDataToHtmlSummry(Data1) {
     //לתקן את המידע שהוא לוקח
     document.getElementById("practoceName").innerHTML = " על האימון " + Data1.practice_name;
-    console.log(Data1);
+    /*console.log(Data1);*/
 
+    const timeM = (Data1.overall_length)/60
     //אודיו
     let audioGoodPrecent = 0;
     let audioCorrectionCounter = 0;
     let audioBollianArry = [];
     let AudioGoodCounter = 0;
+    let audioOverAll = 0;
 
     // נתונים מכיול
     const avgVol = 0.070163540135;
@@ -42,7 +44,7 @@ function insertDataToHtmlSummry(Data1) {
     });
 
     audioGoodPrecent = 100 * (AudioGoodCounter / audioBollianArry.length);
-    audioGoodPrecent = audioGoodPrecent.toFixed(0);
+    audioGoodPrecent = Math.round(audioGoodPrecent);
 
     //חישוב מספר תיקונים
     for (i = 0; i < audioBollianArry.length; i++) {
@@ -54,22 +56,48 @@ function insertDataToHtmlSummry(Data1) {
     }
 
     //חישוב ציון כולל
-
-
+    const audioTimeCorection = audioCorrectionCounter / timeM;
+    if (audioGoodPrecent <= 85 && audioGoodPrecent > 50 && audioTimeCorection < 1) {
+        audioOverAll = audioGoodPrecent - 5;
+    }
+    else if (audioGoodPrecent <= 85 && audioTimeCorection < 2) {
+        audioOverAll = audioGoodPrecent + 5;
+    }
+    else if (audioGoodPrecent <= 85 && audioTimeCorection > 2) {
+        audioOverAll = audioGoodPrecent + 7;
+    }
+    else {
+        audioOverAll = audioGoodPrecent;
+    }
+   
 
 
     //תנועה
     let moveGoodPrecent = 0;
     let moveAllGoodCounter = 0;
     let moveCorectionCounter = 0;
+    let moveOverAll = 0;
     Data1.movmentData.forEach(obj => {
-        if (obj.frameStateOK == true && obj.eyesStateOK == true && obj.rightHandState == "ok" && obj.leftHandState == "ok") {
+        let tempCounter = 0;
+        if (obj.frameStateOK == true) {
+            tempCounter++;
+        }
+        if (obj.eyesStateOK == true) {
+            tempCounter++;
+        }
+        if (obj.rightHandState == "ok") {
+            tempCounter++;
+        }
+        if (obj.leftHandState == "ok") {
+            tempCounter++;
+        }
+        if (tempCounter >= 3) {
             moveAllGoodCounter++;
-        }        
+        }               
     });
 
     moveGoodPrecent = 100 * (moveAllGoodCounter / Data1.movmentData.length);
-    moveGoodPrecent = moveGoodPrecent.toFixed(0);
+    moveGoodPrecent = Math.round(moveGoodPrecent);
 
     for (i = 0; i < Data1.movmentData.length; i++) {
         if ((i + 1) != Data1.movmentData.length) { 
@@ -87,15 +115,34 @@ function insertDataToHtmlSummry(Data1) {
             }
         }
     }
+    //ציון כולל
+    const moveTimeCorection = moveCorectionCounter / timeM;
+    if (moveGoodPrecent <= 85 && moveGoodPrecent > 50 && moveTimeCorection < 1) {
+        moveOverAll = moveGoodPrecent - 5;
+    }
+    else if (moveGoodPrecent <= 85 && moveTimeCorection < 2) {
+        moveOverAll = moveGoodPrecent + 5;
+    }
+    else if (moveGoodPrecent <= 85 && moveTimeCorection > 2) {
+        moveOverAll = moveGoodPrecent + 7;
+    }
+    else {
+        moveOverAll = moveGoodPrecent;
+    }
 
 
 
-
+    //ציון סופי
+    const finalScore = Math.round((audioOverAll + moveOverAll) / 2);
+    
     //הדפסה
     document.getElementById("voiceP").innerHTML = audioGoodPrecent;
     document.getElementById("voiceC").innerHTML = audioCorrectionCounter;
+    document.getElementById("voiceScore").innerHTML = audioOverAll;
     document.getElementById("moveP").innerHTML = moveGoodPrecent;
     document.getElementById("moveC").innerHTML = moveCorectionCounter;
+    document.getElementById("moveScore").innerHTML = moveOverAll;
+    document.getElementById("totalScore").innerHTML = finalScore;
 
 }
 
