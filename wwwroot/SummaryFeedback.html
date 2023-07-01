@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-title" content="Expo" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    
+
 
     <title>קתימבוט 2 - משוב מסכם </title>
 
@@ -62,10 +62,12 @@
     <!-- manifest.json file -->
     <link rel="manifest" href="./manifest.json">
 
-   
-<!-- ספרייה לייצוא PDF  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- 
+
+    <!-- ספרייה לייצוא PDF  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- קישור לקובץ ה-js -->
     <script src="js/APIhandler.js"></script>
     <script src="js/SummaryFeedbackMain.js"></script>
@@ -88,35 +90,35 @@
         </div>
         <div class="col-7" style="padding-left: 3rem;">
             <div class="row justify-content-end" style="padding: 0;margin: 0;">
-                <div class="col-2" >
-                    <button class="btn btn-primary w-100" type="button"
-                        style="font-size:0.8rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">אודות</button>
+                <div class="col-2">
+                    <button class="btn btn-primary w-100" type="button" style="font-size:0.8rem;" data-bs-toggle="modal"
+                        data-bs-target="#aboutModal">אודות</button>
                 </div>
                 <a href="index.html" class="col-2" style="text-decoration: none; padding: 0;margin: 0;">
-                    <button 
-                        class="btn btn-primary w-100" style="font-size:0.8rem;">איזור אישי</button></a>
+                    <button class="btn btn-primary w-100" style="font-size:0.8rem;">איזור אישי</button></a>
 
                 <a href="" class="col-2" style="text-decoration: none;padding: 0;margin: 0;">
-                    <button 
-                        class="btn outbtn w-100" style="margin-left: 0.5rem;margin-right: 0.5rem;">התנתק</button></a>
+                    <button class="btn outbtn w-100"
+                        style="margin-left: 0.5rem;margin-right: 0.5rem;">התנתק</button></a>
             </div>
         </div>
     </nav>
     <!-- Navbar -->
 
 
-    <div  id="content" class="container" style="min-height: 74vh;max-width: 85vw;margin-top: 3rem;max-height: fit-content; margin-bottom: 3rem;">
+    <div id="content" class="container"
+        style="min-height: 74vh;max-width: 85vw;margin-top: 3rem;max-height: fit-content; margin-bottom: 3rem;">
         <div class="row justify-content-between d-flex align-items-center">
             <div class="col">
                 <h2>
                     <span id="namePlace" Span></span>
-                        כל הכבוד
-                        <span id="practoceName"></span>!
+                    כל הכבוד
+                    <span id="practoceName"></span>!
                 </h2>
                 <h3 style="font-size: 1.5rem;">הינה המשוב המסכם שלך:</h3>
             </div>
             <div class="col-3 ">
-                <button class="btn goldBtn d-flex justify-content-around align-items-center "onclick="print()"
+                <button class="btn goldBtn d-flex justify-content-around align-items-center " onclick="print()"
                     style="color:#FDFDFD; font-weight: 500;font-size:large ;width:100%;" type="button"
                     onClick="history.go(0);">ייצוא משוב ל- PDF<span class="bi bi-download"
                         style="color: #FDFDFD;scale:1.5;margin-right: 1.5rem;"></span></button>
@@ -127,7 +129,8 @@
             <h1 style="text-align: right; font-size: 1.4rem;font-weight:700;"> הציון המשוקלל שלך: </h1>
             <div class="row justify-content-between d-flex align-items-center">
                 <div class="col-4 justify-content-center align-items-center">
-                    <p id="totalScore" style="text-align: center;font-size: 7rem;font-weight: 800; color: #C2A9E8;">88</p>
+                    <p id="totalScore" style="text-align: center;font-size: 7rem;font-weight: 800; color: #C2A9E8;">88
+                    </p>
                 </div>
                 <div class="col">
                     <div class="row bg" style="margin-bottom: 1rem;">
@@ -137,7 +140,8 @@
                             <p>מספר התיקונים שביצעת במהלך התרגול: <span id="voiceC">10</span></p>
                         </div>
                         <div class="col-3 d-flex align-items-center">
-                            <p id="voiceScore" style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">60</p>
+                            <p id="voiceScore"
+                                style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">60</p>
                         </div>
                     </div>
                     <div class="row bg">
@@ -147,28 +151,36 @@
                             <p>מספר התיקונים שביצעת במהלך התרגול: <span id="moveC">3</span></p>
                         </div>
                         <div class="col-3 d-flex align-items-center">
-                            <p id="moveScore" style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">90</p>
+                            <p id="moveScore"
+                                style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">90</p>
                         </div>
                     </div>
                 </div>
-
+                <div class="row" style="margin-top: 1rem;">
+                    <p style="font-size: 0.7rem; text-align: center;">הציון הסופי הוא ממצוע ציון התנועה וציון הקול. ציון
+                        התנועה הכולל וציון הקול הכולל משוקללים על בסיס אחוז הזמן התקין יחד עם השפעה של כמות התיקונים
+                        ביחס לזמן הכולל.</p>
+                </div>
             </div>
         </div>
 
         <div class="row justify-content-around d-flex align-items-center" style="margin-top: 3rem;">
             <div class="col justify-content-end d-flex ">
-              <a style="text-decoration: none;" href="practice.html"><button class="btn btn-primary " type="button"
-                        style="font-size:1rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">אני רוצה לתרגל שוב</button></a>  
+                <a style="text-decoration: none;" href="practice.html"><button class="btn btn-primary " type="button"
+                        style="font-size:1rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">אני רוצה לתרגל
+                        שוב</button></a>
             </div>
             <div class="col justify-content-center d-flex ">
                 <a style="text-decoration: none;" href="index.html"><button class="btn btn-primary " type="button"
-                        style="font-size:1rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">חזרה לעמוד הראשי</button></a>
+                        style="font-size:1rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">חזרה לעמוד
+                        הראשי</button></a>
             </div>
             <div class="col justify-content-lg-start d-flex ">
-               <a style="text-decoration: none;" href="allPracrices.html"> <button class="btn btn-primary " type="button"
-                        style="font-size:1rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">לצפייה בכל התרגולים</button></a>
+                <a style="text-decoration: none;" href="allPracrices.html"> <button class="btn btn-primary "
+                        type="button" style="font-size:1rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">לצפייה
+                        בכל התרגולים</button></a>
             </div>
-        </div>  
+        </div>
 
     </div>
 
@@ -221,9 +233,9 @@
 
 
 
-    <footer class="footer mt-auto py-2 bg-light text-center footer-bg" >
+    <footer class="footer mt-auto py-2 bg-light text-center footer-bg">
         <div class="container">
-            <span class="text-muted" style="font-size: 0.8rem;" >
+            <span class="text-muted" style="font-size: 0.8rem;">
                 תוצר זה פותח במסגרת פרויקט גמר בתואר ראשון ב
                 <span style="font-weight: 600;color:#321C99;">פקולטה לטכנולוגיות למידה</span>
                 , HIT |

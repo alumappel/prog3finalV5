@@ -432,7 +432,7 @@ function handsMovment(keypoints) {
         //הדפסה
         if (frameCounter >= 12) {
             frameCounter = 0;
-            if (lHideCounter > 10) {
+            if (lHideCounter > 11) {
                 if (leftelement.classList.contains("greenG")) {
                     leftelement.classList.remove("greenG");
                 }
@@ -468,7 +468,7 @@ function handsMovment(keypoints) {
 
 
 
-            if (rHideCounter > 10) {
+            if (rHideCounter > 11) {
                 if (rightelement.classList.contains("greenG")) {
                     rightelement.classList.remove("greenG");
                 }
