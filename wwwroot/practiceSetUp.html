@@ -1,0 +1,203 @@
+﻿<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#549D9D" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Expo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>קתימבוט 2 - עמוד כיוונון</title>
+
+    <!--favicon-->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+
+
+
+
+    <!-- זיהוי וידיאו ויצירת שלד באמצעות  -->
+    <!-- movenet -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+
+
+    <!-- קישור לתסריט שמתעסק בוידיאו -->
+    <script src="js/moveNetScript.js"></script>
+
+    <!-- סקריפט לשימוש בגרפים -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- Web Audio API -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
+
+    <!-- קישור לקובץ ה-js -->
+    <script type="module" src="js/setUpMain.js"></script>
+
+
+
+</head>
+
+<body class="fullscreen">
+    <!-- Navbar -->
+    <nav class="row navbar navbar-expand-lg bg-light navbar-light  justify-content-between ">
+        <!-- Navbar brand -->
+        <div class="col-5 navbar-brand">
+            <div class="row justify-content-lg-start ">
+                <div class="col-3" style="padding: 0;margin: 0;"><img src="images/logo.png" alt="logo"
+                        style="height: auto; width:7rem; padding: 0;margin: 0;"></div>
+                <h5 style="margin: 0;padding: 0; padding-top: 0.4rem;" class="col">מערכת התרגול שלך</h5>
+            </div>
+        </div>
+        <div class="col-7" style="padding-left: 3rem;">
+            <div class="row justify-content-end" style="padding: 0;margin: 0;">
+                <div class="col-2">
+                    <button class="btn btn-primary w-100" type="button" style="font-size:0.8rem;" data-bs-toggle="modal"
+                        data-bs-target="#aboutModal">אודות</button>
+                </div>
+                <a href="index.html" class="col-2" style="text-decoration: none; padding: 0;margin: 0;">
+                    <button class="btn btn-primary w-100" style="font-size:0.8rem;">איזור אישי</button></a>
+
+                <a href="" class="col-2" style="text-decoration: none;padding: 0;margin: 0;">
+                    <button class="btn outbtn w-100"
+                        style="margin-left: 0.5rem;margin-right: 0.5rem;">התנתק</button></a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+
+
+
+    <div class="container" style="min-height: 87vh; max-width: 85vw;padding-bottom: 2rem; ">
+        <div class="row justify-content-between align-items-center" style="padding-top: 2%;">
+            <div class="col-5 flex-column bg " style="height: 65vh;padding-left: 2rem;padding-right: 2rem;">
+
+                <div class="row bg-opacity-0 justify-content-center align-items-center"
+                    style="height: 50vh;padding-top: 1rem;">
+                    <div class="camera position-relative bg-video ">
+                        <video id="player" class="" autoplay muted playsinline></video>
+                        <canvas id="canvas1"></canvas>
+                        <div id="overlayBorderColor" class="overlay position-absolute"></div>
+                    </div>
+                    <div class="row bg chart-container justify-content-center align-items-center"
+                        style="height: 15vh;margin-top: 2rem;">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6  align-items-center "
+                style="height: 70vh;padding-top: 2rem;">
+                <div>
+                    <p>איזה כיף לפגוש אתכם בעמוד הכיונון של המערכת!
+                    </br>
+                    בעמוד זה תוכלו לוודא שהמצלמה והמיקרופון שלכם מחוברים ועובדים, וגם לוודא שהמצלמה שלכם ממוקמת בצורה תקינה.
+                </br></br>
+                בצד ימין מופיעים שני ריבועים, בריבוע העליון יופיע וידיאו שלכם, בריבוע התחתון מופיע גרף המעיד על קבלת אודיו מהמיקרופון.
+            </br>
+                במידה ולא מוצג וידאו בדקו שהמצלמה דולקת ומחוברת למחשב, לאחר מכן וודאו או שהקו בגרף שטוח ואתם לא רואים עקומה משתנה, וודאו שהמיקרופון והמצלמה דולקים, לאחר מכן לחצו על אייקון המצלמה בשורת הכתובת ובדקו שהמערכת מאושרת לגשת לנתוני המלצמה. 
+</br>
+במידה והגרף המציג את האודיו שטוח ואתם לא רואים בו עקומה משתנה, כלומר המערכת לא מקבלת מכם נתוני שמע, בדקו שהמיקרופון דלוק ומחובר למחשב, לאחר מכן גשו שוב לאייקון המצלמה בשורת הכתובת וודאו שלמערכת מאושרת גישה לנתונים אלו.
+            </br> </br>
+            אחרי שראיתם שהמערכת מקבלת שמע ותמונה נשאר רק לוודא שהמצלמה ממוקמת נכון.  
+</br> 
+            מסביב לוידיאו מופיעה מסגרת צבעונית, המטרה שלכם היא שהמסגרת תצבע בירוק, במידה והמסגרת אדומה נסו להרחיק/ לקרב את המצלמה או לזוז לצדדים. עליכם להגיע למצב שבו רואים את כל פלג גופכם העליון ושאינכם קרובים לגבולות.
+            </p>
+
+                   
+                </div>
+                <div class=" d-flex align-items-center justify-content-center" style="margin-top: 2rem;">
+                    <a href="practice.html" style="text-decoration: none;">
+                        <btn id="backBtn" class="btn btn-primary btn-lg btn-block " style="font-size: 2rem;">חזרה לעמוד
+                            התרגול</btn>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-6 d-none" style="height: 90vh;">
+        <div class="row justify-content-around" style="height: 24vh;margin-bottom: 4vh;">
+            <div id="handsDiv" class="col-7 bg">
+                <h3>תנועות ידיים</h3>
+                <div class="row  justify-content-around" style="padding-top: 1rem;height: 15vh;">
+                    <div id="rightHandDiv" class="col-5 bg">
+                        <h4>ימין</h4>
+                        <p id="rightHandFeedback"></p>
+                    </div>
+                    <div id="leftHandDiv" class="col-5 bg">
+                        <h4>שמאל</h4>
+                        <p id="leftHandFeedback"></p>
+                    </div>
+                </div>
+            </div>
+            <div id="eyesDiv" class="col-4  bg">
+                <h3>מבט למצלמה</h3>
+                <p id="eyesFeedback"></p>
+            </div>
+        </div>
+        <div class="row justify-content-around" style="height: 28vh;margin-bottom: 4vh;">
+            <div id="volDiv" class="col-7 bg">
+                <h3 style="margin-bottom: 1rem;">עוצמת קול</h3>
+                <input type="range" min="0" max="100" value="0" class="slider reset-range" id="volRange">
+            </div>
+            <div  class="col-4  bg">
+                <h3>גיוון בדיבור</h3>
+                <p>לא פעיל</p>                        
+            </div>
+            <div id="pitchDiv" class="col-4  bg d-none">
+                <h3>גיוון בדיבור</h3>                        
+                <p id="pitchFeedback"></p>
+            </div>
+        </div>
+        <div class="row justify-content-around" style="height: 28vh;">
+            <div class="col-7 bg">
+                <h3 style="margin-bottom: 1rem;">קצב דיבור</h3>
+                <p>לא פעיל</p>
+                <input type="range" min="0" max="100" value="0" class="slider reset-range" id="speedRange">
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-center">
+                <btn id="stopBtn" class="btn btn-primary btn-lg btn-block">סיום תרגול</btn>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer mt-auto py-2 bg-light text-center footer-bg">
+        <div class="container">
+            <span class="text-muted" style="font-size: 0.8rem;">
+                תוצר זה פותח במסגרת פרויקט גמר בתואר ראשון ב
+                <span style="font-weight: 600;color:#321C99;">פקולטה לטכנולוגיות למידה</span>
+                , HIT |
+                <a href="https://www.hit.ac.il/telem/overview"
+                    style="font-weight: 600;color:#321C99; text-decoration: none;">למידע נוסף>></a>
+            </span>
+        </div>
+    </footer>
+</body>
+
+</html>

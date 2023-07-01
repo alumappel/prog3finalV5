@@ -151,6 +151,7 @@ function startAudioChart() {
 function startAnalysis() {
   // מחליף את הכפתור בטעינה
   document.getElementById("startBtn").classList.add("d-none");
+  document.getElementById("testBtn").classList.add("d-none");
   document.getElementById("startSpinner").classList.remove("d-none");
 
 
