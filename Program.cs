@@ -29,6 +29,16 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+var options = new DefaultFilesOptions();
+options.DefaultFileNames.Clear();
+options.DefaultFileNames.Add("index.html");
+app.UseDefaultFiles(options);
+
+app.UseStaticFiles();
+
+
+app.UseRouting();
+
 app.UseCors(X => X.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
