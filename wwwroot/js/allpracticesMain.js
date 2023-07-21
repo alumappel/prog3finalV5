@@ -1,3 +1,5 @@
+// תסריט שמנהל את עמוד כל התרגולים
+// בטעינת עמוד
 window.addEventListener("DOMContentLoaded", function () {
     // בטיעינת עמוד
     openSession("getAll");
@@ -5,6 +7,7 @@ window.addEventListener("DOMContentLoaded", function () {
     
 });
 
+// פונקציה למעבר למשוב מסכם של תרגול
 function redirectToPage(id) {
     // Construct the URL with the ID parameter
     var url = 'SummaryFeedback.html?id=' + id;

@@ -4,10 +4,7 @@ import { PitchDetector } from "https://esm.sh/pitchy@4";
 export var audioAnalysisStart = false;
 export const audioArry = [];
 
-// window.addEventListener("DOMContentLoaded", function () {
-//     // //אודיו הוספת מאזין לכפתור הזתחלת ניתוח
-//   //  document.getElementById("startBtnAudio").addEventListener("click", analyzeAudioFromMicrophone);
-// })
+
 
 let audioContext;
 let scriptNode;

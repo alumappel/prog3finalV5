@@ -1,9 +1,11 @@
-﻿// משתנים לגודל הוידיאו מהמצלמה
+﻿// תסריט המנהל את עמוד כיוון מערכת
+
+// משתנים לגודל הוידיאו מהמצלמה
 let videoHeight;
 let videoWidth;
-
 var startModal;
 
+// בטעינת עמוד
 window.addEventListener("DOMContentLoaded", function () {
     // בדיקה שיש תמיחה בווידיאו
   // וקריאה לפונקצייה שמתחילה להזרים וידיאו
@@ -14,10 +16,9 @@ window.addEventListener("DOMContentLoaded", function () {
   } else {
     console.log("camera or mic not supported");
   }
-
 })
 
-
+// התחלת איסוף ושידור וידיאו
 async function startVideo() {
   // נשמור את תג הוידאו לתוך משתנה
   const player = document.getElementById('player');
@@ -40,6 +41,7 @@ async function startVideo() {
     .catch(function (err) { console.log(err.name + ": " + err.message); });
 }
 
+// יצירת ועדכון גרף אודיו
 function startAudioChart() {
   // Define chart options
   const chartOptions = {
@@ -122,9 +124,8 @@ function startAudioChart() {
     });
 }
 
+// פונקציה המפעילה ניתוח תנועה
 function startAnalysis() { 
-
-
   // Initialize TensorFlow.js
   tf.ready().then(() => {
     // This code will run after TensorFlow.js is ready
@@ -132,6 +133,5 @@ function startAnalysis() {
     // קורה לפונקציות ניתוח
     initSkeleton(videoHeight, videoWidth);     
   });
-
 }
 

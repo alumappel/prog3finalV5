@@ -1,4 +1,7 @@
-﻿window.addEventListener("DOMContentLoaded", function () {
+﻿// תסריט לניהול עמוד משוב מסכם
+
+// בטעינת עמוד
+window.addEventListener("DOMContentLoaded", function () {
     // בטיעינת עמוד
     openSession("nameSummry");
     // Get the URL parameters
@@ -8,10 +11,12 @@
     getPractice(practiceId);
 });
 
+// הכנסת שם המשתמש לגוף העמוד
 function insertNameToHtmlSummry(name) {
     document.getElementById("namePlace").innerHTML = name +", ";
 }
 
+// פונקצייה המקבלת את כל נתוני האימון, מחשבת ציון ומזינה את התוצאות לגוף העמוד
 function insertDataToHtmlSummry(Data1) {
     //לתקן את המידע שהוא לוקח
     document.getElementById("practoceName").innerHTML = " על האימון " + Data1.practice_name;
@@ -148,7 +153,7 @@ function insertDataToHtmlSummry(Data1) {
 
 
 
-
+// פונקצייה המתרחשת בלחיצה על הורדת העמוד למחשב
 function print(){
 var element = document.getElementById('content');
 html2pdf().set({

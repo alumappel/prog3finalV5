@@ -1,7 +1,6 @@
+// עמוד שמתעסק מול הAPן לכל הקשור בשמירת תרגולים חדשים
+
 import { audioArry } from "./audioScript.js";
-//import { videoHeight } from "./mainTesting.js";
-//import { videoWidth } from "./mainTesting.js";
-/*import * as bootstrap from "./bootstrap.bundle.js";*/
 
 // שמירת כתובת השרת
 const serverUrl = `./api/`
@@ -110,7 +109,7 @@ const controllerUrl = serverUrl + `Practices/`
 }
 
 
-//// עבור כיול
+// פונקציה לשמירה של נתוני כיול - מדובר על פונקציה נפםרדת כי הנתונים הנשמרים מורחבים יותר והם פונים למבנה טבלאות שונה
 //export async function addPracticeTesting() {
 ////בדיקת זמן התרגול המירבי 
 //const timerValue = document.getElementById("timer").textContent;
