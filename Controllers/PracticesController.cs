@@ -127,41 +127,7 @@ namespace prog3finalV4.Controllers
             }
         }
 
-        ////עדכון שם אימון
-        //[HttpPost("UpdatePracticeName")]
-        //public async Task<IActionResult> UpdatePracticeName(PracticeDTO PracticeToUpdate)
-        //{
-        //    //שורה שבודקת אם הסשן חי
-        //    int? sessionId = HttpContext.Session.GetInt32("userId");
-        //    //לבדוק אם זה לא null ואז אפשר להמשיך לשלבים הבאים
-        //    if (sessionId != null)
-        //    {
 
-        //        if (PracticeToUpdate.Id > 0)
-        //        {
-        //            string query = "UPDATE practices SET practice_name = @practice_name WHERE id =@Id";
-
-        //            bool isQuestionUpdated = await _db.SaveDataAsync(query, PracticeToUpdate);
-
-        //            if (isQuestionUpdated == true)
-        //            {
-        //                return Ok();
-        //            }
-        //            else
-        //            {
-        //                return BadRequest("Question Update Failed");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            return BadRequest("ID not sent");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("no open session");
-        //    }
-        //}
 
         //מחיקת אימון
         [HttpDelete("PracticeIdToDelete")]
