@@ -240,16 +240,16 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
         }
 
         // Print feedback
-        if (runCounter > 12) {
+        if (runCounter > 30) {
             runCounter = 0;
-            if (badCounter >= 8) {
+            if (badCounter >= 21) {
                 if (document.getElementById("overlayBorderColor").classList.contains("green-outline")) {
                     document.getElementById("overlayBorderColor").classList.remove("green-outline");
                 }
                 document.getElementById("overlayBorderColor").classList.add("red-outline");
                 outsideFrameCount++;
             }
-            else if (goodCounter >= 8) {
+            else if (goodCounter >= 21) {
                 if (document.getElementById("overlayBorderColor").classList.contains("red-outline")) {
                     document.getElementById("overlayBorderColor").classList.remove("red-outline");
                 }
