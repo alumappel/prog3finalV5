@@ -1,6 +1,6 @@
 ﻿// תסריט לניהול מערכת התרגול
 import { analyzeAudioFromMicrophone } from "./audioScript.js";
-import { initMonotony } from "./myMonotonyScript.js";
+/*import { initMonotony } from "./myMonotonyScript.js";*/
 import { audioArry } from "./audioScript.js";
 import { stopAudioAnalysis } from "./audioScript.js";
 import { addPractice1 } from "./APIHAndlerForAdd.js";
