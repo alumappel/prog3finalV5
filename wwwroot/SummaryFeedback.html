@@ -104,18 +104,7 @@
                     </p>
                 </div>
                 <div class="col">
-                    <div class="row bg" style="margin-bottom: 1rem;">
-                        <div class="col" style="padding: 1rem;">
-                            <h4>ציון קול ודיבור</h4>
-                            <p>אחוז הזמן התקין במהלך התרגול: <span id="voiceP">42</span>%</p>
-                            <p>מספר התיקונים שביצעת במהלך התרגול: <span id="voiceC">10</span></p>
-                        </div>
-                        <div class="col-3 d-flex align-items-center">
-                            <p id="voiceScore"
-                                style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">60</p>
-                        </div>
-                    </div>
-                    <div class="row bg">
+                    <div class="row bg"  style="margin-bottom: 1rem;">
                         <div class="col" style="padding: 1rem;">
                             <h4>ציון תנועה</h4>
                             <p>אחוז הזמן התקין במהלך התרגול: <span id="moveP">91</span>%</p>
@@ -123,7 +112,18 @@
                         </div>
                         <div class="col-3 d-flex align-items-center">
                             <p id="moveScore"
-                                style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">90</p>
+                               style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">90</p>
+                        </div>
+                    </div>
+                    <div class="row bg">
+                        <div class="col" style="padding: 1rem;">
+                            <h4>ציון קול ודיבור</h4>
+                            <p>אחוז הזמן התקין במהלך התרגול: <span id="voiceP">42</span>%</p>
+                            <p>מספר התיקונים שביצעת במהלך התרגול: <span id="voiceC">10</span></p>
+                        </div>
+                        <div class="col-3 d-flex align-items-center">
+                            <p id="voiceScore"
+                               style="color: #F0CB7F; font-size: 4rem;text-align: center;font-weight: 800;">60</p>
                         </div>
                     </div>
                 </div>
@@ -139,40 +139,40 @@
         <div class="bg" style="padding: 2rem; padding-left: 4rem;padding-right: 4rem; margin-top: 2rem;">
             <h1 style="text-align: right;font-size: 1.4rem;font-weight:700;"> תצוגה לפי מדדים:</h1>
             <div class="row">
-                <div class="col-6">
-                <h2 style="font-size: 1.2rem;">עוצמת קול בדיבור: </h2>
-                <div class="chartF">
-                    <div id="responsive-chart-vol"></div>
-                  </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col">
-                <h2 style="font-size: 1.2rem;">תנועת יד ימין:</h2>
-                <div class="chartF">
-                    <div id="responsive-chart-Right"></div>
-                </div>
-                </div>
-                <div class="col">
-                    <h2 style="font-size: 1.2rem;">תנועת יד שמאל:</h2>
+                    <h2 style="font-size: 1.2rem;">מיקום בפריים:</h2>
                     <div class="chartF">
-                        <div id="responsive-chart-Left"></div>
+                        <div id="responsive-chart-Frame"></div>
                     </div>
-                    </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                <h2 style="font-size: 1.2rem;">מיקום בפריים:</h2>
-                <div class="chartF">
-                    <div id="responsive-chart-Frame"></div>
-                </div>
                 </div>
                 <div class="col">
                     <h2 style="font-size: 1.2rem;">מבט לקהל:</h2>
                     <div class="chartF">
                         <div id="responsive-chart-Eyes"></div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2 style="font-size: 1.2rem;">תנועת יד ימין:</h2>
+                    <div class="chartF">
+                        <div id="responsive-chart-Right"></div>
                     </div>
+                </div>
+                <div class="col">
+                    <h2 style="font-size: 1.2rem;">תנועת יד שמאל:</h2>
+                    <div class="chartF">
+                        <div id="responsive-chart-Left"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2 style="font-size: 1.2rem;">עוצמת קול בדיבור: </h2>
+                    <div class="chartF">
+                        <div id="responsive-chart-vol"></div>
+                    </div>
+                </div>
             </div>
 
         </div>

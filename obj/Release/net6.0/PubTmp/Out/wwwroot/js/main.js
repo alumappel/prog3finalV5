@@ -1,5 +1,6 @@
-﻿import { analyzeAudioFromMicrophone } from "./audioScript.js";
-import { initMonotony } from "./myMonotonyScript.js";
+﻿// תסריט לניהול מערכת התרגול
+import { analyzeAudioFromMicrophone } from "./audioScript.js";
+/*import { initMonotony } from "./myMonotonyScript.js";*/
 import { audioArry } from "./audioScript.js";
 import { stopAudioAnalysis } from "./audioScript.js";
 import { addPractice1 } from "./APIHAndlerForAdd.js";
@@ -9,9 +10,9 @@ import { addPractice1 } from "./APIHAndlerForAdd.js";
 // משתנים לגודל הוידיאו מהמצלמה
 let videoHeight;
 let videoWidth;
-
 var startModal;
 
+// בטעינת עמוד
 window.addEventListener("DOMContentLoaded", function () {
   // הופעת מודל התחלה בטעינה
   startModal = new bootstrap.Modal(document.getElementById("startModal"), {
@@ -35,15 +36,11 @@ window.addEventListener("DOMContentLoaded", function () {
   //מאזין לשמירה
     document.getElementById("saveToDb").addEventListener("click", addPractice1);
 
-
-
-
-
 })
 
 
 
-
+// התחלת איסוף ושידור וידיאו
 async function startVideo() {
   // נשמור את תג הוידאו לתוך משתנה
   const player = document.getElementById('player');
@@ -66,6 +63,7 @@ async function startVideo() {
     .catch(function (err) { console.log(err.name + ": " + err.message); });
 }
 
+// יצירת גרף אודיו ועדכונו
 function startAudioChart() {
   // Define chart options
   const chartOptions = {
@@ -148,13 +146,12 @@ function startAudioChart() {
     });
 }
 
+// פונקציה שפועלת בלחיצה על כפתור התחלה
 function startAnalysis() {
   // מחליף את הכפתור בטעינה
   document.getElementById("startBtn").classList.add("d-none");
   document.getElementById("testBtn").classList.add("d-none");
   document.getElementById("startSpinner").classList.remove("d-none");
-
-
 
   // Initialize TensorFlow.js
   tf.ready().then(() => {
@@ -165,8 +162,6 @@ function startAnalysis() {
     analyzeAudioFromMicrophone();
     // initMonotony();
   });
-
-
 
   // כאשר יש תוכן
   console.log("moveAnalysisStart: " + moveAnalysisStart);
@@ -217,8 +212,8 @@ function startAnalysis() {
   }
 }
 
-var timer; // Declare the timer variable outside the startTimer function
-
+// פונקצייה המנהלת את הטיימר
+var timer; 
 function startTimer() {
   // Get the current time in milliseconds
   var startTime = new Date().getTime();
@@ -243,6 +238,7 @@ function startTimer() {
   }, 1000);
 }
 
+// פונקציה לעצירת כל הניתוחים בלחיצה על סיום תרגול
 function stopAll() {
     // עוצר הכל
     clearInterval(timer); // Stop the timer

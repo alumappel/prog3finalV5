@@ -1,4 +1,6 @@
-// לעצירה ובדיקות
+// תסריט המנהל את כל ניתוח ועיבוד נתוני הוידיאו
+
+// for stopping activity and checking the code
 let runDetector = true;
 let runFrame = true;
 let runHands = true;
@@ -11,16 +13,16 @@ const testingMoveArry = [];
 let frameCount = 0;
 const frameNumForCalculate = 12;
 
-// מערך השומר מיקום של תנועות ידיים ומתעדכן כל X פריימים
-// מבנה מערך:
-// 1- מערך של ימין
-//2- מערך של שמאל
+// The array that stores the position of hand movements and is updated every X frames
+// array structure:
+// 1- array of right
+//2- array of left
 let handsLocation = [];
-// מערך עיניים, כל תא עין ימין ואז שמאל
+// array of eyes, each eye cell right then left
 let eyesLocation = [];
 
 
-// פונקצייה שמכינה את כל מה שצריך כדי להתחיל לאסוף וידיאו ולנתח אותו 
+// A function that prepares everything needed to start collecting video and analyzing it
 async function initSkeleton(videoHeight, videoWidth) {
     const video = document.getElementById('player');
     //const canvas = document.getElementById('canvas1');
@@ -29,18 +31,14 @@ async function initSkeleton(videoHeight, videoWidth) {
         poseDetection.SupportedModels.MoveNet,
         { modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER }
     );
-    //  קריאה לפונקצייה ששומרת נתונים במערך
+// call to the function that saves data in the array
     creatMoveArry();
 
 
-    // פונקצייה שחוזרת כל פריים ומבצעת ניתוח על הוידיאו יחד עם הצגה של שלד
+// A function that repeats each frame and performs an analysis on the video along with showing a skeleton
     async function redraw() {
-        if (runDetector == true) {
-            //ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // ספירת הפריים
-            frameCount++;
-            //console.log("frame count: " + frameCount);
+        if (runDetector == true) {     
+            frameCount++;      
 
             try {
                 // Detect poses in the video
@@ -50,41 +48,17 @@ async function initSkeleton(videoHeight, videoWidth) {
                 if (poses.length > 0) {
                     const keypoints = poses[0].keypoints;
 
-                    // // Draw keypoints
-                    // keypoints.forEach(keypoint => {
-                    //   if (keypoint.score > 0.4) {
-                    //     ctx.beginPath();
-                    //     ctx.arc(keypoint.x, keypoint.y, 5, 0, 2 * Math.PI);
-                    //     ctx.fillStyle = 'red';
-                    //     ctx.fill();
-                    //   }
-                    // });
-
-                    // // Draw lines between keypoints
-                    // const pairs = poseDetection.util.getAdjacentPairs(poseDetection.SupportedModels.MoveNet);
-                    // pairs.forEach(pair => {
-                    //   const from = keypoints[pair[0]];
-                    //   const to = keypoints[pair[1]];
-                    //   ctx.beginPath();
-                    //   ctx.moveTo(from.x, from.y);
-                    //   ctx.lineTo(to.x, to.y);
-                    //   ctx.strokeStyle = 'blue';
-                    //   ctx.stroke();
-                    // });
-
-                    // עבור כיול
+                  // for calibration
                     let keypoint = JSON.stringify(poses[0].keypoints);
                     // console.log(keypoint);
                     testingMoveArry.push(keypoint);
 
-                    // קריאה למיקום בפריים
+                    // call to position in frame
                     fullBodyInFrame(keypoints, videoHeight, videoWidth);
-                    // קריאה לתנועות ידיים
+                    // call for hand gestures
                     handsMovment(keypoints);
-                    // קריא לבדיקת מבט
+                    // call for eye gaze test
                     eyeTocamra(keypoints);
-
-
 
                     moveAnalysisStart = true;
                 }
@@ -97,11 +71,11 @@ async function initSkeleton(videoHeight, videoWidth) {
         }
     }
 
-    // קריאה ראשונה לפונקצייה שחוזקת
+    // First call to the returning function
     redraw();
 }
 
-// משתנים לתיעוד ביצועים
+// Variables for performance documentation
 let inFrameCount = 0;
 let outsideFrameCount = 0;
 
@@ -119,7 +93,7 @@ let eyesWrongCount = 0;
 
 
 
-// הגדרת ערכים מכיול
+// Setting calibration values
 const topMin = 90.26;
 const topMax = 2777.94;
 
@@ -136,30 +110,26 @@ const sholdersMax = 363.06;
 const sholdersMin = 121.03;
 
 
-// פונקצייה שבודקת מיקום בפריים
+// A function that checks position in the frame
 let runCounter = 0;
 let goodCounter = 0;
 let badCounter = 0;
 function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
     runCounter++;
-    //בדיקה שיש רצון לבצע ניתוח
+    //Checking that there is a desire to perform an analysis
     if (runFrame == true) {
-        //בדיקה של אברים בפריים
+        //Inspection of body parts in the frame
         let eyesTop = false;
         let solderButtom = false;
-        //let bodyRight = false;
-        //let bodyLeft = false;
         sides = false;
         let Faraway = false;
         let Closeup = false;
 
-        //document.getElementById("tempConsol").innerHTML = "";
 
-
-        //למעלה
-        // בדיקת וודאות בזיהוי נקודה
+        //UP
+        // Check for certainty in identifying a point
         if (keypoints[1].score > 0.5 && keypoints[2].score > 0.5) {
-            // בדיקה שהנקודה בפריים
+            // Check that the point is in the frame
             if (keypoints[1].y > topMin && keypoints[2].y > topMin) {
                 eyesTop = true;
             }
@@ -183,12 +153,12 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
         if (t2 == null) {
             t2 = 0;
         }
-        //document.getElementById("tempConsol").innerHTML += "למעלה " + "מינימום: " + topMin + "מקסימום: " + t1.toFixed(2) + "עין שמאל: " + t2.toFixed(2) + "תקין: " + eyesTop.toString();
+    
 
-        //למטה
-        // בדיקת וודאות בזיהוי נקודה
+        //DOWN
+        // Check for certainty in identifying a point
         if (keypoints[5].score > 0.7 && keypoints[6].score > 0.7) {
-            // בדיקה שהנקודה בפריים
+            // Check that the point is in the frame
             if (keypoints[5].y > buttomMin && keypoints[6].y > buttomMin) {
                 solderButtom = true;
             }
@@ -207,10 +177,9 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
         if (b2 == null) {
             b2 = 0;
         }
-        //document.getElementById("tempConsol").innerHTML += "</br>" + "למטה " + "מינימום: " + buttomMin + "מקסימום: " + buttomMax + "כתף ימין: " + b1.toFixed(2) + "כתף שמאל: " + b2.toFixed(2) + "תקין: " + solderButtom.toString();
+       
 
-
-        //צדדים
+        //SIDES
         sides = true;
         let passOneScore = 0;
         for (i = 1; i <= 11; i++) {
@@ -231,12 +200,8 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
         }
 
 
-
-
-
-
-        // קרוב למצלמה
-        // מרחק גדול בין כתפיים
+        // close to the camera
+        // Large distance between shoulders
         if (keypoints[5].score > 0.7 && keypoints[6].score > 0.7) {
             if ((keypoints[5].x - keypoints[6].x) < sholdersMax) {
                 Closeup = true
@@ -250,10 +215,9 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
             Closeup = false;
         }
         let c = (keypoints[5].x - keypoints[6].x);
-        //document.getElementById("tempConsol").innerHTML += "</br>" + "קרוב " + "מקסימום מרחק: " + sholdersMax + "מרחק: " + c.toFixed(2) + "תקין: " + Closeup.toString();
-
-        // רחוק מהמצלמה
-        //מרחק קטן בין כתפיים
+        
+       // away from the camera
+       //small distance between shoulders
         if (keypoints[5].score > 0.7 && keypoints[6].score > 0.7) {
             if ((keypoints[5].x - keypoints[6].x) > sholdersMin) {
                 Faraway = true
@@ -266,12 +230,8 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
             Faraway = false;
         }
         let f = (keypoints[5].x - keypoints[6].x);
-        //document.getElementById("tempConsol").innerHTML += "</br>" + "רחוק " + "מינימום מרחק: " + sholdersMin + "מרחק: " + f.toFixed(2) + "תקין: " + Faraway.toString();
-
-
-
-        // הדפסת משוב כל פריים 10 רק בוודאות, אם המערכת לא החלטית זה ידלג על הדפסה
-        //document.getElementById("tempConsol").innerHTML = "למעה עיניים - " + eyesTop.toString() + " </br> למטה כתפיים - " + solderButtom.toString() + "</br> צדדים - " + sides.toString() + "</br> רחוק - " + Faraway.toString() + "</br> קרוב - " + Closeup.toString();
+        
+        // print feedback every frame 10 just to be sure, if the system is indecisive it will skip printing        
         if (eyesTop == false || solderButtom == false || sides == false || Faraway == false || Closeup == false) {
             badCounter++
         }
@@ -279,18 +239,17 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
             goodCounter++;
         }
 
-
-
-        if (runCounter > 12) {
+        // Print feedback
+        if (runCounter > 30) {
             runCounter = 0;
-            if (badCounter >= 8) {
+            if (badCounter >= 21) {
                 if (document.getElementById("overlayBorderColor").classList.contains("green-outline")) {
                     document.getElementById("overlayBorderColor").classList.remove("green-outline");
                 }
                 document.getElementById("overlayBorderColor").classList.add("red-outline");
                 outsideFrameCount++;
             }
-            else if (goodCounter >= 8) {
+            else if (goodCounter >= 21) {
                 if (document.getElementById("overlayBorderColor").classList.contains("red-outline")) {
                     document.getElementById("overlayBorderColor").classList.remove("red-outline");
                 }
@@ -305,9 +264,7 @@ function fullBodyInFrame(keypoints, videoHeight, videoWidth) {
 }
 
 
-
-
-
+// A function that checks hand movements
 let frameCounter = 0;
 
 let lGoodCounter = 0;
@@ -320,86 +277,79 @@ let lMuchCounter = 0;
 let rMuchCounter = 0;
 
 
-//document.getElementById("rightHandFeedback").innerHTML = "";
-//document.getElementById("leftHandFeedback").innerHTML = "";
-// פונקצייה שבודקת תנועות ידיים
 function handsMovment(keypoints) {
     let hand;
     let axis;
     const rightelement = document.getElementById("rightHandDiv");
     const leftelement = document.getElementById("leftHandDiv");
-    // נתונים מכיול
+// Calibration data
     const leftX = 19.764;
     const leftY = 13.782;
     const rightX = 21.712;
     const rightY = 18.634;
 
-    //בדיקה שיש רצון לבצע ניתוח
+   //Checking that there is a desire to perform an analysis
     if (runHands == true) {
         frameCounter++;
-        // בדיקה שיש וודאות במציאת הנקודה
-        //שמירת המיקום במערך הזמני    
+      // Check that there is certainty in finding the point
+         //saving the position in the temporary array 
         handsLocation.push({ left: keypoints[9], right: keypoints[10] });
-        // חישוב תנועה 
+     // Movement calculation
 
-        // יד שמאל
-        // ניקוי ערכים בעלי ציון נמוך
+         // left hand
+         // Clear low-scoring values
         let slicedLeft = handsLocation.filter(cell => cell.left.score > 0.7).slice(-1 * (2 * frameNumForCalculate));
-        // חלוקה למערך עם תאים של 4 פריימים
+     // division into an array with cells of 4 frames
         const newSlicedLeft = rearrangeArray(slicedLeft);
-        //X חישוב הפרש לכל תא
+        // Calculate the difference for each X cell 
         hand = 'left';
         axis = 'x';
         let leftXAvg = returnDiffAvg(newSlicedLeft, hand, axis);
-        //Y חישוב הפרש לכל תא
+        // Calculate the difference for each Y cell 
         axis = 'y';
         let leftYAvg = returnDiffAvg(newSlicedLeft, hand, axis);
-        // בדיקת תקינות
+        // Validation check
         if (leftXAvg < (leftX / 2) && leftYAvg < (leftY / 2)) {
-            //  אין מספיק
+            //  There is not enough movement
             lLittelCounter++;
         }
         else if (leftXAvg > (2 * leftX) && leftYAvg > (2 * leftY)) {
-            // יותר מדי
+            // too much movement
             lMuchCounter++;
         }
         else {
-            //תקין
+            //OK
             lGoodCounter++;
         }
 
-        // יד ימין
-        // ניקוי ערכים בעלי ציון נמוך
+     // right hand
+         // Clear low-scoring values
         let slicedRight = handsLocation.filter(cell => cell.right.score > 0.7).slice(-1 * (2 * frameNumForCalculate));
-        // חלוקה למערך עם תאים של 4 פריימים
+       // division into an array with cells of 4 frames
         const newSlicedRight = rearrangeArray(slicedRight);
-        //X חישוב הפרש לכל תא
+        // Calculate the difference for each X cell 
         hand = 'right';
         axis = 'x';
         let rightXAvg = returnDiffAvg(newSlicedRight, hand, axis);
-        //Y חישוב הפרש לכל תא
+        // Calculate the difference for each Y cell 
         axis = 'y';
         let rightYAvg = returnDiffAvg(newSlicedRight, hand, axis);
-        // בדיקת תקינות
+        // Validation check
         if (rightXAvg < (rightX / 2) && rightYAvg < (rightY / 2)) {
-            //לא מספיק
+           //  There is not enough movement
             rLittelCounter++;
         }
         else if (rightXAvg > (2 * rightX) && rightYAvg > (2 * rightY)) {
-            //יותר מדי
+           // too much movement
             rMuchCounter++;
         }
         else {
-            //תקין
+            //OK
             rGoodCounter++;
         }
 
 
-
-
-
-
-        //// בדיקת יד מוסתרת        
+        // hidden hand check     
         if (keypoints[9].score < 0.7) {
             lHideCounter++;
         }
@@ -409,102 +359,110 @@ function handsMovment(keypoints) {
 
 
 
-
-        ////חותך כל פריים נתונים מהחצי שנייה האחרונה
-        //let slicedHands = handsLocation.slice(-frameNumForCalculate);
-        //// יד שמאל
-        //// מערך המכיל רק תאים בעלי ציון נמוך
-        //let filterLeft = slicedHands.filter(cell => cell.left.score < 0.7)
-        //if (filterLeft.length > (slicedHands.length / 2)) {
-        //    // יד שמאל מוסתרת
-        //    lHideCounter++;
-        //}
-
-        //// יד ימין
-        //// מערך המכיל רק תאים בעלי ציון נמוך
-        //let filterRight = slicedHands.filter(cell => cell.right.score < 0.7)
-        //if (filterRight.length > (slicedHands.length / 2)) {
-        //    // יד ימין מוסתרת
-        //    rHideCounter++;
-        //}
-
-
-        //הדפסה
+        //printing
+        // Check if the 'frameCounter' reaches 12. This might indicate that a specific number of frames have been processed.
         if (frameCounter >= 12) {
+             // Reset the 'frameCounter' to 0.
             frameCounter = 0;
+            // Hand Movement Evaluation:
+    // Left Hand Movement:
+    // Check the 'lHideCounter' to determine if the left hand is hidden from the camera for a prolonged duration.
             if (lHideCounter > 11) {
+                // If the left hand is hidden for an extended period:
                 if (leftelement.classList.contains("greenG")) {
                     leftelement.classList.remove("greenG");
                 }
                 leftelement.classList.add("redG");
                 document.getElementById("leftHandFeedback").innerHTML = "היד מוסתרת מהמצלמה";
+                // Increase the counter for the left hand being hidden.
                 rightHandHidedCount++;
             }
+             // Check the 'lGoodCounter' to determine if the left hand movement is considered good.
             else if (lGoodCounter > 6) {
+                // If the left hand movement is considered good:
                 if (leftelement.classList.contains("redG")) {
                     leftelement.classList.remove("redG");
                 }
                 leftelement.classList.add("greenG");
                 document.getElementById("leftHandFeedback").innerHTML = "";
+                // Increase the counter for the left hand being in a good position.
                 leftHandOkCount++;
             }
+            // Check the 'lLittelCounter' to determine if the left hand movement is too little.
             else if (lLittelCounter > 6) {
+                // If the left hand movement is considered too little:
                 if (leftelement.classList.contains("greenG")) {
                     leftelement.classList.remove("greenG");
                 }
                 leftelement.classList.add("redG");
                 document.getElementById("leftHandFeedback").innerHTML = "אינך מזיז/ה את היד מספיק";
+                 // Increase the counter for the left hand moving too little.
                 leftHandstaticCount++;
             }
+            // Check the 'lMuchCounter' to determine if the left hand movement is too much.
             else if (lMuchCounter > 6) {
+                // If the left hand movement is considered too much:
                 if (leftelement.classList.contains("greenG")) {
                     leftelement.classList.remove("greenG");
                 }
                 leftelement.classList.add("redG");
                 document.getElementById("leftHandFeedback").innerHTML = "את/ה מזיז/ה את היד יותר מדי";
+                // Increase the counter for the left hand moving too much.
                 leftHandToMuchCount++;
 
             }
 
 
-
+// Right Hand Movement:
+    // Check the 'rHideCounter' to determine if the right hand is hidden from the camera for a prolonged duration.   
             if (rHideCounter > 11) {
+                // If the right hand is hidden for an extended period:
                 if (rightelement.classList.contains("greenG")) {
                     rightelement.classList.remove("greenG");
                 }
                 rightelement.classList.add("redG");
                 document.getElementById("rightHandFeedback").innerHTML = "היד מוסתרת מהמצלמה";
+                 // Increase the counter for the right hand being hidden.
                 rightHandHidedCount++;
             }
+             // Check the 'rGoodCounter' to determine if the right hand movement is considered good.
             else if (rGoodCounter > 6) {
+                // If the right hand movement is considered good:
                 if (rightelement.classList.contains("redG")) {
                     rightelement.classList.remove("redG");
                 }
                 rightelement.classList.add("greenG");
                 document.getElementById("rightHandFeedback").innerHTML = "";
+                // Increase the counter for the right hand being in a good position.        
                 rightHandOkCount++;
 
             }
-            else if (rLittelCounter > 6) {
+            // Check the 'rLittelCounter' to determine if the right hand movement is too little.
+               else if (rLittelCounter > 6) {
+                // If the right hand movement is considered too little:
                 if (rightelement.classList.contains("greenG")) {
                     rightelement.classList.remove("greenG");
                 }
                 rightelement.classList.add("redG");
                 document.getElementById("rightHandFeedback").innerHTML = "אינך מזיז/ה את היד מספיק";
+                // Increase the counter for the right hand moving too little.
                 rightHandstaticCount++;
 
             }
+            // Check the 'rMuchCounter' to determine if the right hand movement is too much.
             else if (rMuchCounter > 6) {
+                  // If the right hand movement is considered too much:
                 if (rightelement.classList.contains("greenG")) {
                     rightelement.classList.remove("greenG");
                 }
                 rightelement.classList.add("redG");
                 document.getElementById("rightHandFeedback").innerHTML = "את/ה מזיז/ה את היד יותר מדי";
+                // Increase the counter for the right hand moving too much.
                 rightHandToMuchCount++;
 
             }
 
-
+// Reset all the counters for the next frame.
             lGoodCounter = 0;
             rGoodCounter = 0;
             lHideCounter = 0;
@@ -526,16 +484,16 @@ function handsMovment(keypoints) {
 
 
 
-//פונקציה שבודקת מבט למצלמה
+//A function that checks for looking at the camera
 let tempCounter = 0;
-// ספירת חוסר נראות לימין ולשמאל בנפד
+// Counting the lack of visibility to the right and left in the netf
 let rightNotShowCount = 0;
 let leftNotShowCount = 0;
 let rightShowCount = 0;
 let leftShowCount = 0;
 function eyeTocamra(keypoints) {
 
-    //בדיקה שיש רצון לבצע ניתוח
+   //Checking that there is a desire to perform an analysis
     if (runEyes == true) {
         tempCounter++;
 
@@ -554,25 +512,37 @@ function eyeTocamra(keypoints) {
         }
 
 
-        // הדפסה
+        // printing
+        // Get the 'eyesDiv' element from the DOM.
         const element = document.getElementById("eyesDiv");
+
+        // Check if the 'tempCounter' reaches 12. This might indicate that a specific number of frames have been processed.
         if (tempCounter >= 12) {
+            // Eye Movement Evaluation:
+    // Check if either the left or right eye has been not shown to the camera for a prolonged duration.
             if (leftNotShowCount > 10 || rightNotShowCount > 10) {
+                // If either eye has been not shown for an extended period:
                 if (element.classList.contains("greenG")) {
                     element.classList.remove("greenG");
                 }
                 element.classList.add("redG");
                 document.getElementById("eyesFeedback").innerHTML = "שימ/י לב להסתכל למצלמה " + "</br>";
+                // Increase the counter for wrong eye movement.
                 eyesWrongCount++;
             }
+            // Check if either the left or right eye has been shown to the camera for an acceptable duration.
             else if (leftShowCount > 6 || rightShowCount > 6) {
+                // If either eye has been shown for a reasonable period:
                 if (element.classList.contains("redG")) {
                     element.classList.remove("redG");
                 }
                 element.classList.add("greenG");
                 document.getElementById("eyesFeedback").innerHTML = "";
+                // Increase the counter for acceptable eye movement.
                 eyesOkcount++;
             }
+
+            // Reset all the counters for the next frame.
             tempCounter = 0;
             rightShowCount = 0;
             leftShowCount = 0;
@@ -584,30 +554,40 @@ function eyeTocamra(keypoints) {
 }
 
 
-// יצירת מערכים לשמירה
+// Create arrays to save
+// This function is responsible for creating arrays to save various movement states over time.
 function creatMoveArry() {
+     // Get the current time in milliseconds.
     let startTime = new Date().getTime();
+     // Set up an interval that executes every 1000 milliseconds (1 second).
     var repite = setInterval(function () {
+        // Get the current time again.
         const currentTime = new Date().getTime();
+        // Check if 10 seconds have passed since the last recording.
         if (currentTime - startTime > 10000) {
+            // Reset the 'startTime' to the current time for the next recording period
             startTime = new Date().getTime();
+
+             // Define arrays to store movement states and their corresponding names.
             const HandsNames = ["ok", "hided", "toMuch", "static"];
             const togglNames = [true, false];
+
+            // Create arrays to store the counts of different movement states.
             const rightHandCount = [rightHandOkCount, rightHandHidedCount, rightHandToMuchCount, rightHandstaticCount]
             const leftHandCount = [leftHandOkCount, leftHandHidedCount, leftHandToMuchCount, leftHandstaticCount]
             const eyesCount = [eyesOkcount, eyesWrongCount];
             const frameCount = [inFrameCount, outsideFrameCount];
 
+            // Determine the dominant movement states for each category (right hand, left hand, eyes, and frame).
             const rightHandState = HandsNames[largestVariable(rightHandCount)];
             const leftHandState = HandsNames[largestVariable(leftHandCount)];
             const frameState = togglNames[largestVariable(frameCount)];
             const eyesState = togglNames[largestVariable(eyesCount)];
 
+            // Push the current movement states into the 'MoveArry' array for recording.
             MoveArry.push([frameState, eyesState, rightHandState, leftHandState]);
-            // console.log(MoveArry);
 
-            // MoveArry.push([inFrameCount, outsideFrameCount, leftHandHidedCount, rightHandHidedCount, leftHandstaticCount, rightHandstaticCount, leftHandOkCount, leftHandOkCount, rightHandOkCount, eyesOkcount, eyesWrongCount]);
-
+// Reset the counters for the next recording period.
             inFrameCount = 0;
             outsideFrameCount = 0;
 
@@ -623,14 +603,14 @@ function creatMoveArry() {
             eyesOkcount = 0;
             eyesWrongCount = 0;
         }
-    }, 1000);
+    }, 1000); // The interval runs every 1000 milliseconds (1 second).
 }
 
 
 
-// שיטות עזר
+// Helper methods
 
-// פונקצייה שמחזירה את הערך הכי גדול ממערך
+// A function that returns the largest value in the array
 function largestVariable(array) {
     let largest = array[0];
     let largestIndex = 0;
@@ -648,7 +628,7 @@ function largestVariable(array) {
 }
 
 
-// פונקצייה שמסדרת מחדש מערכים
+// A function that rearranges arrays
 function rearrangeArray(array) {
     const outputArry = [];
     for (let i = 0; i < array.length; i += 4) {
@@ -657,7 +637,7 @@ function rearrangeArray(array) {
     return outputArry;
 }
 
-// פונקצייה שמחזירה ממוצע הפרשים
+// A function that returns the average of the differences
 function returnDiffAvg(arry, hand, axis) {
     const differences = [];
     if (hand == 'left' && axis == 'x') {

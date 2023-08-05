@@ -12,40 +12,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <title>קתימבוט 2 </title>
+    <!--<base href="/FinalProject_AlumaAppel/"/>-->
 
-    <!--favicon-->
-
-    <link href="splashscreens/iphone5_splash.png"
-        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphone6_splash.png"
-        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphoneplus_splash.png"
-        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphonex_splash.png"
-        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphonexr_splash.png"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphonexsmax_splash.png"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipad_splash.png"
-        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipadpro1_splash.png"
-        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipadpro3_splash.png"
-        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipadpro2_splash.png"
-        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image" />
-
+    <!--favicon-->   
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
@@ -57,9 +26,6 @@
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-    <!-- manifest.json file -->
-    <link rel="manifest" href="./manifest.json">
 
     <!-- קישור לקובץ ה-js -->
     <script src="js/APIhandler.js"></script>
@@ -88,21 +54,20 @@
                     style="font-size:0.8rem;" data-bs-toggle="modal" data-bs-target="#aboutModal">אודות</button>
             </div>           
 
-            <a href="" class="col-2" style="text-decoration: none;padding: 0;margin: 0;">
+            <a href="https://tests.telem-hit.net/Portelem/public" class="col-2" style="text-decoration: none;padding: 0;margin: 0;">
                 <button 
-                    class="btn outbtn w-100" style="margin-left: 0.5rem;margin-right: 0.5rem;">התנתק</button></a>
+                    class="btn outbtn w-100" style="margin-left: 0.5rem;margin-right: 0.5rem;">התנתקות</button></a>
         </div>
     </div>
 </nav>
 <!-- Navbar -->
 
-    <div id="videoDiv">
-        <video id="video1" preload="" autoplay="" muted="" playsinline="" loop="">
-            <!-- קישור למקור: https://www.pexels.com/video/digital-abstract-art-8675586/ -->
-            <source src="images/pexels-weldi-studio-design-8675586-1920x1080-30fps.mp4" type="video/mp4">
-        </video>
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    </div>
+<!-- פולד ראשון  -->
+<div id="videoDiv">   
+    <!-- קישור למקור: https://www.pexels.com/video/digital-abstract-art-8675586/ -->    
+    <iframe id="video1" src="https://player.vimeo.com/video/846510342?h=95fcb6102b&autoplay=1&loop=1&autopause=0&muted=1&controls=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</div>
 
     <!-- אנימצית חץ יורד -->
     <div class="arrow_container">       
@@ -146,11 +111,12 @@
     </div>
     </div>
 
+    <!-- איזור תוכן -->
     <h2 style="margin-top: 10rem;margin-right: 5rem;">אז איך זה עובד?</h2>
 
     <div class="d-flex justify-content-center align-items-center" style="margin-top: 3rem;">
         <div class="ratio ratio-16x9" style="max-width: 60%;">
-            <iframe src="https://www.youtube.com/embed/Nrf1m5dArNo" title="YouTube video" allowfullscreen></iframe>
+            <iframe src="https://player.vimeo.com/video/844952629?h=de4cb81c76" title="how to video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
     </div>
     <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 3rem;margin-top: 3rem;">
@@ -200,7 +166,7 @@
     </div>
 
 
-
+<!-- פוטר -->
     <footer class="footer mt-auto py-2 bg-light text-center footer-bg">
         <div class="container">
             <span class="text-muted" style="font-size: 0.8rem;">

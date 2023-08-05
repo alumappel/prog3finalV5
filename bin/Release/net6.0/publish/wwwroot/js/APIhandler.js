@@ -1,4 +1,5 @@
-// import { audioArry } from "./audioScript.js";
+// עמוד לניהול כל מה שקשור לAPI מלבד שמירת נתונים חדשים
+// ההפרדה נעשת בגלל שחלק מקבצי הקוד הם מודלים וחלק לא
 
 // שמירת כתובת השרת
 const serverUrl = `./api/`
@@ -9,6 +10,7 @@ const portelemControllerURL = serverUrl + `Portelem`
 // משתנה לשמירת האימונים האחרונים שנשלפו
 let lastPractices;
 
+//פתיחת שסן
 async function openSession(porpuse) {
     const url = portelemControllerURL;
     const response = await fetch(url);
@@ -33,6 +35,7 @@ async function openSession(porpuse) {
     }
 }
 
+// שליפת שם משתמש עמוד בית
 async function getName() {
     const url = controllerUrl + `GetUserName`;
     const response = await fetch(url);
@@ -49,6 +52,7 @@ async function getName() {
     }
 }
 
+// שליפת שם משתמש עמוד משוב מסכם
 async function getNameSummary() {
     const url = controllerUrl + `GetUserName`;
     const response = await fetch(url);
@@ -329,8 +333,6 @@ async function deletPractice(id) {
         toast.show();
     }
 }
-
-
 
 
 

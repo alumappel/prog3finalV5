@@ -1,4 +1,6 @@
-﻿//import { analyzeAudioFromMicrophone } from "./audioScript.js";
+﻿// תסריט שניהל את העמוד ששיש לכיול - כבר לא בשימוש
+
+//import { analyzeAudioFromMicrophone } from "./audioScript.js";
 //import { initMonotony } from "./myMonotonyScript.js";
 //import { audioArry } from "./audioScript.js";
 //import { stopAudioAnalysis } from "./audioScript.js";
