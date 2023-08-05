@@ -320,10 +320,14 @@ thead {
 }
 
 #video1 {
-    margin: auto;
+    margin: 0;
     display: block;
-    width: 100%;
+    width: 150% !important;
     opacity: 25%;
+    height: 150%;
+    top: 0;
+    left: -25%;
+    position: absolute;
 }
 
 
